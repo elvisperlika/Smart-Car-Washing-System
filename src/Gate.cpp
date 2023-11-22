@@ -5,6 +5,10 @@ Gate::Gate(int pin){
     this->servo.attach(pin);
 }
 
-void Gate::setAngle(int angle){
-    this->servo.write(angle);
+void Gate::open(){
+    this->servo.write(90);
+}
+
+void Gate::close(){
+    this->servo.write(0);
 }

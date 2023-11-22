@@ -4,11 +4,11 @@
 
 class Gate {
     private:
-        int pin;
         Servo servo;
     public:
         Gate(int pin);
-        void setAngle(int angle);
+        void open();
+        void close();
 };
 
 #endif
