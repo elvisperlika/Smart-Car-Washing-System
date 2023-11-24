@@ -11,6 +11,7 @@ enum PinType {
 class Pin {
 public:
     Pin(int pinNumber, PinType type);
+    Pin();
     int getPinNumber();
     PinType getPinType();
 

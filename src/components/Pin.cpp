@@ -5,6 +5,9 @@ Pin::Pin(int pinNumber, PinType type) {
     this->type = type;
 }
 
+Pin::Pin() {
+}
+
 int Pin::getPinNumber() {
     return this->pinNumber;
 }
