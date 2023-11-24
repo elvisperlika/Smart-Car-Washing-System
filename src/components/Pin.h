@@ -2,6 +2,7 @@
 #define PIN_H
 
 enum PinType {
+    GENERAL_PIN,
     INPUT_PIN,
     OUTPUT_PIN,
     SDA_PIN,

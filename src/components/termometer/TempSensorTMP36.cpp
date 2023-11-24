@@ -1,13 +1,13 @@
-#include "TempSensorTMP35.h"
+#include "TempSensorTMP36.h"
 #include "Arduino.h"
 
 #define VOLT_FACTOR ((float)0.0048828145)
 
-TempSensorLM35::TempSensorLM35(int p) : pin(p){
+TempSensorLM36::TempSensorLM36(int pin) : TempSensor(pin) {
 }
 
-float TempSensorLM35::getTemperature(){
-    int value = analogRead(pin);
+float TempSensorLM36::getTemperature(){
+    int value = analogRead(pins[0].getPinNumber());
     float voltage = value * VOLT_FACTOR;
     float valueInCelsius = (voltage - 0.5) * 100.0;
     return valueInCelsius;

@@ -3,12 +3,10 @@
 
 #include "TempSensor.h"
 
-class TempSensorLM35: public TempSensor {
+class TempSensorLM36: public TempSensor {
 public:
-    TempSensorLM35(int p);
+    TempSensorLM36(int pin);
     virtual float getTemperature();
-private:
-    int pin;
 };
 
 

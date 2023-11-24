@@ -2,7 +2,7 @@
 
 #include "Arduino.h"
 
-Sonar::Sonar(int echoP, int trigP, long maxTime) : echoPin(echoP), trigPin(trigP), timeOut(maxTime){
+Sonar::Sonar(int echoP, int trigP, long maxTime) : ProximitySensor(echoPin), echoPin(echoP), trigPin(trigP), timeOut(maxTime){
     pinMode(trigPin, OUTPUT);
     pinMode(echoPin, INPUT);
     temperature = 20; // default value
@@ -11,7 +11,8 @@ Sonar::Sonar(int echoP, int trigP, long maxTime) : echoPin(echoP), trigPin(trigP
 void Sonar::setTemperature(float temp){
     temperature = temp;
 }
-float Sonar::getSoundSpeed(){
+
+float Sonar::getSoundSpeed() {
     return 331.5 + 0.6*temperature;
 }
 

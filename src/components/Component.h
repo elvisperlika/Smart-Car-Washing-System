@@ -7,7 +7,7 @@ class Component {
 public:
     Component(Pin* pins, int numPins);
 
-private:
+protected:
     Pin* pins;
 };
 

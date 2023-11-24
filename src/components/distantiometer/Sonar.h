@@ -2,6 +2,7 @@
 #define __SONAR__
 
 #include "ProximitySensor.h"
+#include "../Component.h"
 
 #define NO_OBJ_DETECTED -1
 
