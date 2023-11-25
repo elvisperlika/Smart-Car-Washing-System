@@ -6,8 +6,8 @@
 
 extern int carDistance;
 
-AccessTask::AccessTask(Gate* gate) {
-    this->gate = gate;
+AccessTask::AccessTask(int gatePin) {
+    this->gate = new Gate(gatePin);
 }
 
 void AccessTask::init(int period) {
@@ -22,35 +22,41 @@ void AccessTask::tick() {
                 state = WAITING_TO_OPEN;
                 tOpen = millis();
             }
+            Serial.println("CLOSE");
             break;
         case WAITING_TO_OPEN:
-            if (millis() - tOpen >= TOPEN) {
+            if (millis() - tOpen >= this->TOPEN) {
                 state = IN_OPENING;
             }
+            Serial.println("WAITING_TO_OPEN");
             break;
         case IN_OPENING:
-            gate->incOneGrade();
+            this->gate->incOneGrade();
             if (gate->getAngle() == 90) {   
                 state = OPEN;
             }
+            Serial.println("IN_OPENING");
             break;
         case OPEN:
             if (carDistance >= MAXDIST || carDistance <= MINDIST) {
                 state = WAITING_TO_CLOSE;
                 tClose = millis();
             }
+            Serial.println("OPEN");
             break;
         case WAITING_TO_CLOSE:
             if (millis() - tClose >= TOPEN) {
                 state = IN_CLOSING;
             }
+            Serial.println("WAITING_TO_CLOSE");
             break;
         case IN_CLOSING:
-            gate->decOneGrade();
+            this->gate->decOneGrade();
             if (gate->getAngle() == 0) {
                 state = CLOSE;
             }
+            Serial.println("IN_CLOSING");
             break;
-        Serial.println(state);
+        
     }
 }

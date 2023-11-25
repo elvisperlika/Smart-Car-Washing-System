@@ -7,11 +7,13 @@ Task* accessTask;
 
 void setup() {
   sched.init(100);
-  accessTask = new AccessTask(new Gate(8));
+  accessTask = new AccessTask(9);
+  accessTask->init(100);
   sched.addTask(accessTask);
   Serial.begin(9600);
 }
 
 void loop() {
+  Serial.println("Looping...");
   sched.schedule();
 }
