@@ -1,10 +1,10 @@
 #ifndef __GATE__
 #define __GATE__
-#include <Servo.h>
+#include "PWMServo.h"
 
 class Gate {
     private:
-        Servo servo;
+        PWMServo servo;
     public:
         Gate(int pin);
         void setAngle(int angle);

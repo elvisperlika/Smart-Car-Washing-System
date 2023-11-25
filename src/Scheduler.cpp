@@ -1,19 +1,15 @@
 #include "Scheduler.h"
-#include <TimerOne.h>
+#include <Arduino.h>
+#include "components/Timer.h"
 
-volatile bool timerFlag;
-
-void timerHandler(void){
-  timerFlag = true;
-}
+Timer* Timer_1;
 
 void Scheduler::init(int basePeriod){
+  Timer_1 = new Timer();
   this->basePeriod = basePeriod;
-  timerFlag = false;
   long period = 1000l*basePeriod;
   
-  Timer1.initialize(period);
-  Timer1.attachInterrupt(timerHandler);
+  Timer_1->setupPeriod(period);
   nTasks = 0;
 }
 
@@ -28,9 +24,7 @@ bool Scheduler::addTask(Task* task){
 }
   
 void Scheduler::schedule(){   
-  while (!timerFlag){}
-  timerFlag = false;
-
+  Timer_1->waitForNextTick();
   for (int i = 0; i < nTasks; i++){
     if (taskList[i]->isActive() && taskList[i]->updateAndCheckTime(basePeriod)){
       taskList[i]->tick();
