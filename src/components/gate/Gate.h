@@ -7,7 +7,7 @@ class Gate : public Component {
     private:
         Servo servo;
     public:
-        Gate(int pin);
+        Gate(unsigned short pin);
         void setAngle(int angle);
         void incOneGrade();
         void decOneGrade();

@@ -6,7 +6,7 @@
 class TempSensor: public Component {
 
 public:
-    TempSensor(int pin);
+    TempSensor(unsigned short pin);
     virtual float getTemperature() = 0;
 };
 

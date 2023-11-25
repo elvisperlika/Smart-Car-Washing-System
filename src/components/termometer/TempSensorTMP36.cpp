@@ -3,7 +3,7 @@
 
 #define VOLT_FACTOR ((float)0.0048828145)
 
-TempSensorLM36::TempSensorLM36(int pin) : TempSensor(pin) {
+TempSensorLM36::TempSensorLM36(unsigned short pin) : TempSensor(pin) {
 }
 
 float TempSensorLM36::getTemperature(){

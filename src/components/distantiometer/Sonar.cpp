@@ -2,9 +2,7 @@
 
 #include "Arduino.h"
 
-Sonar::Sonar(int echoP, int trigP, long maxTime) : echoPin(echoP), trigPin(trigP), timeOut(maxTime) {
-    pinMode(trigPin, OUTPUT);
-    pinMode(echoPin, INPUT);
+Sonar::Sonar(unsigned short echoP, unsigned short trigP, long maxTime) : echoPin(echoP), trigPin(trigP), timeOut(maxTime) {
     temperature = 20; // default value
 
     Pin pins[2] = { Pin(trigPin, OUTPUT_PIN), Pin(echoPin, INPUT_PIN) };

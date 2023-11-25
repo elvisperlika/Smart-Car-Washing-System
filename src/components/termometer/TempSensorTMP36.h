@@ -5,8 +5,8 @@
 
 class TempSensorLM36: public TempSensor {
 public:
-    TempSensorLM36(int pin);
-    virtual float getTemperature();
+    TempSensorLM36(unsigned short pin);
+    virtual float getTemperature() = 0;
 };
 
 

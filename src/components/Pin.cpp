@@ -1,6 +1,6 @@
 #include "Pin.h"
 
-Pin::Pin(int pinNumber, PinType type) {
+Pin::Pin(unsigned short pinNumber, PinType type) {
     this->pinNumber = pinNumber;
     this->type = type;
 }

@@ -11,13 +11,13 @@ enum PinType {
 
 class Pin {
 public:
-    Pin(int pinNumber, PinType type);
+    Pin(unsigned short pinNumber, PinType type);
     Pin();
     int getPinNumber();
     PinType getPinType();
 
 private:
-    int pinNumber;
+    unsigned short pinNumber;
     PinType type;
 };
 
