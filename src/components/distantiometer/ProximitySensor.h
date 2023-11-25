@@ -4,8 +4,10 @@
 class ProximitySensor : public Component {
 
 public:
-    ProximitySensor(int pin);
+    ProximitySensor();
+    ProximitySensor(Pin pins[], int numPins);
     virtual float getDistance() = 0;
+
 };
 
 #endif

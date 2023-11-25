@@ -5,10 +5,11 @@
 
 class Component {
 public:
-    Component(Pin* pins[], int numPins);
+    Component(Pin pins[], int numPins);
+    Component();
 
 protected:
-    Pin** pins;
+    Pin *pins;
 };
 
 #endif

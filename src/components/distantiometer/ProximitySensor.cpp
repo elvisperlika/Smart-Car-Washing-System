@@ -1,9 +1,6 @@
 #include "ProximitySensor.h"
 #include "../Component.h"
 
-class ProximitySensor : public Component {
+ProximitySensor::ProximitySensor() {}
 
-public:
-    ProximitySensor(int pin) : Component({new Pin(pin, INPUT_PIN)}, 1) { }
-    virtual float getDistance() = 0;
-};
+ProximitySensor::ProximitySensor(Pin pins[], int numPins) : Component(pins, numPins) { }

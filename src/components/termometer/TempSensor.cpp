@@ -4,9 +4,15 @@
 class TempSensor: public Component {
 
 public:
-    TempSensor(int pin) : Component({new Pin(pin, INPUT_PIN)}, 1) {}
-    virtual float getTemperature() = 0;
+    TempSensor(int pin) {
+        pins = new Pin[1];
+        pins[0] = Pin(pin, INPUT_PIN);
+        TempSensor(pins, 1);
+    }
+
+    float getTemperature();
+
+private:
+    TempSensor(Pin pins[], int numPins) : Component(pins, numPins) { }
 
 };
-
-

@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "Gate.h"
 
-Gate::Gate(int pin) : Component({new Pin(pin, OUTPUT_PIN)}, 1) {
+Gate::Gate(int pin) : Component(new Pin(pin, OUTPUT_PIN), 1) {
     this->servo.attach(pin);
 }
 

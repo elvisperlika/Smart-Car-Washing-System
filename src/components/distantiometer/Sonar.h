@@ -14,6 +14,7 @@ public:
     void setTemperature(float temp);
 
 private:
+    Sonar(Pin pins[], int numPins);
     const float vs = 331.5 + 0.6*20;
     float getSoundSpeed();
 
