@@ -1,14 +1,22 @@
 #include <Arduino.h>
 #include "Gate.h"
 
-Gate::Gate(int pin) : Component(new Pin(pin, OUTPUT_PIN), 1) {
+Gate::Gate(int pin){
     this->servo.attach(pin);
 }
 
-void Gate::open() {
-    this->servo.write(90);
+void Gate::setAngle(int angle){
+    this->servo.write(angle);
 }
 
-void Gate::close() {
-    this->servo.write(0);
+void Gate::incOneGrade(){
+    this->servo.write(this->servo.read() + 1);
+}
+
+void Gate::decOneGrade(){
+    this->servo.write(this->servo.read() - 1);
+}
+
+int Gate::getAngle(){
+    return this->servo.read();
 }
