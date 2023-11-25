@@ -3,6 +3,7 @@
 
 Gate::Gate(int pin){
     this->servo.attach(pin);
+    this->servo.write(0);
 }
 
 void Gate::setAngle(int angle){

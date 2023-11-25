@@ -4,8 +4,6 @@
 #define MAXDIST 20
 #define MINDIST 5
 
-extern bool carDetected;
-extern bool carWash;
 extern int carDistance;
 
 AccessTask::AccessTask(Gate* gate) {
@@ -53,5 +51,6 @@ void AccessTask::tick() {
                 state = CLOSE;
             }
             break;
+        Serial.println(state);
     }
 }
