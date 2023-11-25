@@ -1,4 +1,4 @@
-#include "TempSensorLM35.h"
+#include "TempSensorTMP36.h"
 #include "Arduino.h"
 
 #define VOLT_FACTOR ((float)0.0048828145)

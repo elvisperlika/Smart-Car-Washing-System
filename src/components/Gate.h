@@ -7,8 +7,10 @@ class Gate {
         Servo servo;
     public:
         Gate(int pin);
-        void open();
-        void close();
+        void setAngle(int angle);
+        void incOneGrade();
+        void decOneGrade();
+        int getAngle();
 };
 
 #endif
