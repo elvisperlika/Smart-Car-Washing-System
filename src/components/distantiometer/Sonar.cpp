@@ -1,17 +1,19 @@
 #include "Sonar.h"
 
-#include "Arduino.h"
-
-Sonar::Sonar(int echoP, int trigP, long maxTime) : echoPin(echoP), trigPin(trigP), timeOut(maxTime){
-    pinMode(trigPin, OUTPUT);
-    pinMode(echoPin, INPUT);
+Sonar::Sonar(unsigned short echoP, unsigned short trigP, long maxTime) : echoPin(echoP), trigPin(trigP), timeOut(maxTime) {
     temperature = 20; // default value
+
+    Pin pins[2] = { Pin(trigPin, OUTPUT), Pin(echoPin, INPUT) };
+    Sonar(pins, 2);
 }
+
+Sonar::Sonar(Pin pins[], int numPins) : DistanceSensor(pins, numPins) { }
 
 void Sonar::setTemperature(float temp){
     temperature = temp;
 }
-float Sonar::getSoundSpeed(){
+
+float Sonar::getSoundSpeed() {
     return 331.5 + 0.6*temperature;
 }
 

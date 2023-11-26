@@ -2,7 +2,7 @@
 #define __ACCESS_TASK__
 
 #include "Task.h"
-#include "Gate.h"
+#include "../components/gate/Gate.h"
 
 class AccessTask: public Task {
 

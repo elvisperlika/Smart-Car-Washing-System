@@ -1,7 +1,6 @@
-#include <Arduino.h>
 #include "Gate.h"
 
-Gate::Gate(int pin){
+Gate::Gate(unsigned short pin) : Component(new Pin(pin, OUTPUT), 1){
     this->servo.attach(pin);
 }
 

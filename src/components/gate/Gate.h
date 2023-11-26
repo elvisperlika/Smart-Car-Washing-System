@@ -1,12 +1,14 @@
 #ifndef __GATE__
 #define __GATE__
+
+#include "../Component.h"
 #include <Servo.h>
 
-class Gate {
+class Gate : public Component {
     private:
         Servo servo;
     public:
-        Gate(int pin);
+        Gate(unsigned short pin);
         void setAngle(int angle);
         void incOneGrade();
         void decOneGrade();
