@@ -4,14 +4,10 @@
 #include "../Component.h"
 
 class Led : public Component {
-public:
-
-  Led(unsigned short pin);
-
-  void switchLed(bool state);
-
-  bool isOn();
-
+    public:
+        Led(unsigned short pin);
+        void switchLed(bool state);
+        bool isOn();
 };
 
 #endif

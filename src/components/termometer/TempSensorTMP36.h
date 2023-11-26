@@ -4,9 +4,9 @@
 #include "TempSensor.h"
 
 class TempSensorLM36: public TempSensor {
-public:
-    TempSensorLM36(unsigned short pin);
-    virtual float getTemperature() = 0;
+    public:
+        TempSensorLM36(unsigned short pin);
+        virtual float getTemperature() = 0;
 };
 
 

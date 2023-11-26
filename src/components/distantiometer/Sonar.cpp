@@ -7,7 +7,7 @@ Sonar::Sonar(unsigned short echoP, unsigned short trigP, long maxTime) : echoPin
     Sonar(pins, 2);
 }
 
-Sonar::Sonar(Pin pins[], int numPins) : Sonar(pins, numPins) { }
+Sonar::Sonar(Pin pins[], int numPins) : DistanceSensor(pins, numPins) { }
 
 void Sonar::setTemperature(float temp){
     temperature = temp;

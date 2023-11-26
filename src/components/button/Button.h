@@ -4,11 +4,9 @@
 #include "../Component.h"
 
 class Button : public Component {
-public:
-  Button(unsigned short pin);
-
-  virtual bool isClicked() = 0;
-
+    public:
+        Button(unsigned short pin);
+        virtual bool isClicked() = 0;
 };
 
 #endif

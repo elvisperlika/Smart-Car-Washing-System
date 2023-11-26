@@ -5,12 +5,13 @@
 #include <Arduino.h>
 
 class Component {
-public:
-    Component(Pin pins[], int numPins);
-    Component();
-
-protected:
-    Pin *pins;
+    protected:
+        Pin *pins;
+        
+    public:
+        Component(Pin pins[], int numPins);
+        Component();
+        ~Component();
 };
 
 #endif

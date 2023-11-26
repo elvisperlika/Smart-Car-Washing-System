@@ -6,9 +6,7 @@
 class DistanceSensor : public Component {
 public:
     DistanceSensor();
-
     DistanceSensor(Pin pins[], int numPins);
-
     virtual float getDistance() = 0;
 };
 

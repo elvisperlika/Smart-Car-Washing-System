@@ -4,7 +4,6 @@
 #include "../Component.h"
 #include <Servo.h>
 
-
 class Gate : public Component {
     private:
         Servo servo;

@@ -4,9 +4,9 @@
 #include "../Component.h"
 
 class ProximitySensor : public Component{
-public:
-    ProximitySensor(int pin);
-    bool checkPresence();
+    public:
+        ProximitySensor(int pin);
+        bool checkPresence();
 };
 
 #endif

@@ -4,10 +4,9 @@
 #include "../Component.h"
 
 class TempSensor: public Component {
-
-public:
-    TempSensor(unsigned short pin);
-    virtual float getTemperature() = 0;
+    public:
+        TempSensor(unsigned short pin);
+        virtual float getTemperature() = 0;
 };
 
 #endif
