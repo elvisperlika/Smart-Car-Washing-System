@@ -2,7 +2,6 @@
 #define LCDI2C_H
 
 #include <LiquidCrystal_I2C.h>
-#include <Arduino.h>
 #include "../Component.h"
 
 class LcdI2C : public Component {

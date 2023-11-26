@@ -1,7 +1,9 @@
 #ifndef __GATE__
 #define __GATE__
-#include <Servo.h>
+
 #include "../Component.h"
+#include <Servo.h>
+
 
 class Gate : public Component {
     private:

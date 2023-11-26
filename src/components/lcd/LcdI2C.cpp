@@ -1,12 +1,11 @@
 #include "LcdI2C.h"
-#include "../Component.h"
 
 LcdI2C::LcdI2C(unsigned short I2CAddress = 0x27, int columns = 16, int rows = 2, unsigned short sdaPin = A4, unsigned short sclPin = A5) : Component() {
         this->lcd = LiquidCrystal_I2C(I2CAddress, columns, rows);
         this->lcd.init();
         this->lcd.backlight();
 
-        Pin pins[2] = { Pin(sdaPin, OUTPUT_PIN), Pin(sclPin, OUTPUT_PIN) };
+        Pin pins[2] = { Pin(sdaPin, OUTPUT), Pin(sclPin, OUTPUT) };
         LcdI2C(pins, 2);
 }
 

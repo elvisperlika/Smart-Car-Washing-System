@@ -2,7 +2,6 @@
 #define __SONAR__
 
 #include "DistanceSensor.h"
-#include "../Component.h"
 
 #define NO_OBJ_DETECTED -1
 

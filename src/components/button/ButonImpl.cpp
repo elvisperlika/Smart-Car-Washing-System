@@ -1,5 +1,4 @@
 #include "ButtonImpl.h"
-#include "Arduino.h"
 
 ButtonImpl::ButtonImpl(unsigned short pin) : Button(pin) { }
 

@@ -1,5 +1,4 @@
 #include "DistanceSensor.h"
-#include "../Component.h"
 
 DistanceSensor::DistanceSensor() {}
 

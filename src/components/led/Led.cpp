@@ -1,7 +1,6 @@
 #include "Led.h"
-#include "Arduino.h"
 
-Led::Led(unsigned short pin) : Component(new Pin(pin, OUTPUT_PIN), 1) { }
+Led::Led(unsigned short pin) : Component(new Pin(pin, OUTPUT), 1) { }
 
 void Led::switchLed(bool state) {
   digitalWrite(this->pins[0].getPinNumber(), state ? HIGH : LOW);

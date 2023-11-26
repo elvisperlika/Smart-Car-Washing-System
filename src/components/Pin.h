@@ -1,24 +1,16 @@
 #ifndef PIN_H
 #define PIN_H
 
-enum PinType {
-    GENERAL_PIN,
-    INPUT_PIN,
-    OUTPUT_PIN,
-    SDA_PIN,
-    SCL_PIN
-};
-
 class Pin {
 public:
-    Pin(unsigned short pinNumber, PinType type);
+    Pin(unsigned short pinNumber, unsigned short type);
     Pin();
     int getPinNumber();
-    PinType getPinType();
+    unsigned short getPinType();
 
 private:
     unsigned short pinNumber;
-    PinType type;
+    unsigned short type;
 };
 
 #endif

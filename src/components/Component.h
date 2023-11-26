@@ -2,6 +2,7 @@
 #define COMPONENT_H
 
 #include "Pin.h"
+#include <Arduino.h>
 
 class Component {
 public:
