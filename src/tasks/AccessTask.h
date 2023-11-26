@@ -2,11 +2,11 @@
 #define __ACCESS_TASK__
 
 #include "tasks/Task.h"
-#include "components/Gate.h"
+#include "components/servo/servo_motor_impl.h"
 
 class AccessTask: public Task {
 
-    Gate* gate;
+    ServoMotor* servo;
     enum { CLOSE, WAITING_TO_OPEN, IN_OPENING, OPEN, WAITING_TO_CLOSE, IN_CLOSING } state;
     uint8_t tOpen;
     uint8_t tClose;

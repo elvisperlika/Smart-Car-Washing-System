@@ -7,7 +7,9 @@
 extern int carDistance;
 
 AccessTask::AccessTask(int gatePin) {
-    this->gate = new Gate(gatePin);
+    this->servo = new ServoMotorImpl(gatePin);
+    this->servo->on();
+    this->servo->setPosition(-40);
 }
 
 void AccessTask::init(int period) {
@@ -16,6 +18,7 @@ void AccessTask::init(int period) {
 }
 
 void AccessTask::tick() {
+    Serial.println(this->servo->getAngle());
     switch (state) {
         case CLOSE:
             if (carDetected || !carWash) {
@@ -31,8 +34,9 @@ void AccessTask::tick() {
             Serial.println("WAITING_TO_OPEN");
             break;
         case IN_OPENING:
-            this->gate->incOneGrade();
-            if (gate->getAngle() == 90) {   
+            this->servo->incOneGrade();
+            //this->servo->setPosition(this->servo->getAngle()+5);
+            if (this->servo->getAngle() >= 70) {   
                 state = OPEN;
             }
             Serial.println("IN_OPENING");
@@ -51,12 +55,11 @@ void AccessTask::tick() {
             Serial.println("WAITING_TO_CLOSE");
             break;
         case IN_CLOSING:
-            this->gate->decOneGrade();
-            if (gate->getAngle() == 0) {
+            this->servo->decOneGrade();
+            if (this->servo->getAngle() <= -40) {
                 state = CLOSE;
             }
             Serial.println("IN_CLOSING");
             break;
-        
     }
 }
