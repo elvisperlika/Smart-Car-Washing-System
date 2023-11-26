@@ -1,6 +1,4 @@
 #include "TempCheck.h"
-#include "../components/TempSensorImpl.h"
-#include <Arduino.h>
 
 #define WARNING_TEMP 60
 
@@ -9,7 +7,7 @@ extern float temp;
 extern bool alert;
 
 TempCheck::TempCheck(int pin) {
-    tempSensor = new TempSensorLM35(pin);
+    tempSensor = new TempSensorTMP36(pin);
 }
 
 void TempCheck::init(int period) {
@@ -25,14 +23,14 @@ void TempCheck::tick() {
         temp = tempSensor->getTemperature();
         if(isWashing){
             case T_NORM:
-                if (temp > MAX_TEMP) {
+                if (temp > WARNING_TEMP) {
                     state = HIGH_TEMP;
                     tHighTemp = millis();
                 }
             break;
             case HIGH_TEMP:
-                if(temp <= MAX_TEMP){
-                    state = T_NORM
+                if(temp <= WARNING_TEMP){
+                    state = T_NORM;
                 }
             if (millis() - tHighTemp >= T_HIGH_TEMP) {
                 state = ALERT;
