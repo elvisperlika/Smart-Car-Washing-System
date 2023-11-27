@@ -1,7 +1,5 @@
-// Configuration.h
-
-#ifndef CONFIGURATION_H
-#define CONFIGURATION_H
+#ifndef __CONFIG_H__
+#define __CONFIG_H__
 
 // Digital Pins
 #define LED1_PIN 3
@@ -20,5 +18,6 @@
 
 // Other Constants
 #define BAUD_RATE 9600
+#define MAX_DISTANCE_TIME 1l // milliseconds time limit to wait for a distance sensor range
 
-#endif // CONFIGURATION_H
+#endif
