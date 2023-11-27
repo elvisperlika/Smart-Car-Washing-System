@@ -5,7 +5,10 @@
 
 class Led : public Light {
     public:
-        Led(unsigned short pin);        
+        Led(unsigned short pin);
+        void switchLight(bool state) override;
+        bool isOn() override;
+        void fading() override;
 };
 
 #endif

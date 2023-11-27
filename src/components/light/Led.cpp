@@ -2,16 +2,16 @@
 
 Led::Led(unsigned short pin) : Light(pin) { }
 
-void Light::switchLight(bool state) {
+void Led::switchLight(bool state) {
     digitalWrite(this->pins[0].getPinNumber(), state ? HIGH : LOW);
 }
 
-bool Light::isOn() {
+bool Led::isOn() {
     return digitalRead(this->pins[0].getPinNumber()) == HIGH;
 }
 
-void Light::fading() {
-    if ((currentLight >= 255 && fadeState == 1) || (currentLight <= 0 && fadeState == -1)) {
+void Led::fading() {
+    if ((currentLight >= 255 && fadeState == true) || (currentLight <= 0 && fadeState == false)) {
         fadeState = !fadeState;
     }
     currentLight += fadeState ? 1 : -1;
