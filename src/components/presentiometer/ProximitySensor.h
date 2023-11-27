@@ -1,12 +1,12 @@
-#ifndef PROXIMITY_SENSOR_H
-#define PROXIMITY_SENSOR_H
+#ifndef __PROXIMITY_SENSOR_H__
+#define __PROXIMITY_SENSOR_H__
 
 #include "../Component.h"
 
-class ProximitySensor : public Component{
+class ProximitySensor : public Component {
     public:
-        ProximitySensor(int pin);
-        bool checkPresence();
+        ProximitySensor(unsigned short pin);
+        virtual bool checkPresence() = 0;
 };
 
 #endif
