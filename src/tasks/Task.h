@@ -8,7 +8,7 @@ class Task {
 		CarWash *carWash;
 		int myPeriod;
 		int timeElapsed;
-		bool active;		
+		bool active;
 	
 	public:
 		Task(int period, CarWash *carWash);

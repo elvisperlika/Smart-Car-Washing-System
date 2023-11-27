@@ -26,8 +26,8 @@ void AccessTask::tick() {
             }
             break;
         case IN_OPENING:
-            gate->incOneGrade();
-            if (gate->getAngle() == 90) {   
+            carWash->getGate()->incOneGrade();
+            if (carWash->getGate()->getAngle() == 90) {   
                 state = OPEN;
             }
             break;
@@ -43,8 +43,8 @@ void AccessTask::tick() {
             }
             break;
         case IN_CLOSING:
-            gate->decOneGrade();
-            if (gate->getAngle() == 0) {
+            carWash->getGate()->decOneGrade();
+            if (carWash->getGate()->getAngle() == 0) {
                 state = CLOSE;
             }
             break;

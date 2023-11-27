@@ -9,6 +9,9 @@ CarWash::CarWash() {
     distanceSensor = new Sonar(DISTANCE_SENSOR_ECHO_PIN, DISTANCE_SENSOR_TRIG_PIN, MAX_DISTANCE_TIME);
     gate = new Gate(GATE_PIN);
     lcd = new LcdI2C();
+    
+    systemState = SystemState::SLEEP;
+    suspended = false;
 }
 
 Led *CarWash::getLed1() {
@@ -41,4 +44,20 @@ Gate *CarWash::getGate() {
 
 Lcd *CarWash::getLcd() {
     return lcd;
+}
+
+SystemState CarWash::getState() {
+    return systemState;
+}
+
+void CarWash::setState(SystemState newState) {
+    systemState = newState;
+}
+
+bool CarWash::isSuspended() {
+    return suspended;
+}
+
+void CarWash::setSuspended(bool newState) {
+    suspended = newState;
 }
