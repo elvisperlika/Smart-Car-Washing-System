@@ -11,7 +11,7 @@ class Task {
 		bool active;		
 	
 	public:
-		void init(int period, CarWash *carWash);
+		Task(int period, CarWash *carWash);
 
 		virtual void tick() = 0;
 

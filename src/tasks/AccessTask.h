@@ -14,8 +14,7 @@ class AccessTask: public Task {
     static uint8_t TCLOSE;
 
     public:
-        AccessTask(Gate* gate);  
-        void init(int period);  
+        AccessTask(int period, CarWash *carWash);
         void tick();
 };
 

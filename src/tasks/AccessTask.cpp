@@ -8,12 +8,7 @@ extern bool carDetected;
 extern bool carWash;
 extern int carDistance;
 
-AccessTask::AccessTask(Gate* gate) {
-    this->gate = gate;
-}
-
-void AccessTask::init(int period) {
-    Task::init(period);
+AccessTask::AccessTask(int period, CarWash *carWash) : Task(period, carWash) {
     state = CLOSE;
 }
 
