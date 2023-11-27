@@ -8,7 +8,7 @@ class StateTask: public Task {
         Msg* msg;
         char data;
         String dataOut;
-        double temp;
+        int temp;
     public:
         StateTask();
         void init(int period);
