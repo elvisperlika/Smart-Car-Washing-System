@@ -11,17 +11,26 @@
 #include "../components/termometer/TempSensorTMP36.h"
 
 class CarWash {
-    Led *led1;
-    Led *led2;
-    Led *led3;
-    TempSensor *temperatureSensor;
-    ProximitySensor *proximitySensor;
-    DistanceSensor *distanceSensor;
-    Gate *gate;
-    Lcd *lcd;
+    private:
+        Led *led1;
+        Led *led2;
+        Led *led3;
+        TempSensor *temperatureSensor;
+        ProximitySensor *proximitySensor;
+        DistanceSensor *distanceSensor;
+        Gate *gate;
+        Lcd *lcd;
 
     public:
         CarWash();
+        Led *getLed1();
+        Led *getLed2();
+        Led *getLed3();
+        bool getPresence();
+        float getTemperature();
+        int getDistance();
+        Gate *getGate();
+        Lcd *getLcd();
 
 };
 
