@@ -1,7 +1,7 @@
 #ifndef __LCD__
 #define __LCD__
 
-#include "../Component.h"
+#include "components/Component.h"
 
 class Lcd : public Component {
     public:
