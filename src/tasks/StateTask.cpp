@@ -45,6 +45,5 @@ void StateTask::tick() {
     sprintf(dataOut, "{\"temperature\": [%d], \"state\": \"%s\"}", this->temp, this->state.c_str());
 
     MsgService.sendMsg(dataOut);
-    delay(200);
     
 }

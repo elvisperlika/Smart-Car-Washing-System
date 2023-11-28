@@ -14,7 +14,7 @@ void setup()
     accessTask = new AccessTask(100, carWash);
     // sched.addTask(accessTask);
 
-    stateTask = new StateTask(100, carWash);
+    stateTask = new StateTask(1000, carWash);
     stateTask->setName("StateTask");
     stateTask->setActive(true);
     sched.addTask(stateTask);
@@ -26,5 +26,4 @@ void setup()
 void loop()
 {
     sched.schedule();
-    Serial.println("loop");
 }
