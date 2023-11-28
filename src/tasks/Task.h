@@ -9,6 +9,7 @@ class Task {
 		int myPeriod;
 		int timeElapsed;
 		bool active;
+		String name;
 	
 	public:
 		Task(int period, CarWash *carWash);
@@ -20,6 +21,10 @@ class Task {
 		bool isActive();
 
 		void setActive(bool active);
+
+		String getName();
+
+		void setName(String name);
   
 };
 

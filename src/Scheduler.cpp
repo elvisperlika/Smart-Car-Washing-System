@@ -14,6 +14,7 @@ void Scheduler::init(int basePeriod){
 }
 
 bool Scheduler::addTask(Task* task){
+    delay(500);
     if (nTasks < MAX_TASKS-1){
         taskList[nTasks] = task;
         nTasks++;
@@ -24,11 +25,13 @@ bool Scheduler::addTask(Task* task){
 }
   
 void Scheduler::schedule(){   
-  
+
+    Serial.println("Waiting for next tick");
     Timer_1->waitForNextTick();
+    Serial.println("Tick");
   
-    for (int i = 0; i < nTasks; i++){
-        if (taskList[i]->isActive() && taskList[i]->updateAndCheckTime(basePeriod)){
+    for (int i = 0; i <= nTasks; i++){
+        if (taskList[i]->isActive()){
             taskList[i]->tick();
         }
     }
