@@ -24,3 +24,11 @@ bool Task::isActive(){
 void Task::setActive(bool active){
     this->active = active;
 }
+
+String Task::getName() {
+	return this->name;
+}
+
+void Task::setName(String name) {
+	this->name = name;
+}

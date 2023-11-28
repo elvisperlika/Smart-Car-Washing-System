@@ -1,38 +1,39 @@
 #include "Scheduler.h"
-#include <TimerOne.h>
+#include <Arduino.h>
+#include "components/Timer.h"
 
-volatile bool timerFlag;
+Timer* Timer_1;
 
-void timerHandler(void){
-  	timerFlag = true;
+void Scheduler::init(int basePeriod){
+    Timer_1 = new Timer();
+    this->basePeriod = basePeriod;
+    long period = 1000l*basePeriod;
+    
+    Timer_1->setupPeriod(period);
+    nTasks = 0;
 }
 
-void Scheduler::init(int basePeriod) {
-	this->basePeriod = basePeriod;
-	timerFlag = false;
-	long period = 1000l*basePeriod;
-	Timer1.initialize(period);
-	Timer1.attachInterrupt(timerHandler);
-	nTasks = 0;
-}
-
-bool Scheduler::addTask(Task* task) {
-	if (nTasks < MAX_TASKS){
-		taskList[nTasks] = task;
-		nTasks++;
-		return true;
-	} else {
-		return false; 
-	}
+bool Scheduler::addTask(Task* task){
+    delay(500);
+    if (nTasks < MAX_TASKS-1){
+        taskList[nTasks] = task;
+        nTasks++;
+        return true;
+    } else {
+        return false; 
+    }
 }
   
-void Scheduler::schedule() {
-	while (!timerFlag){}
-	timerFlag = false;
+void Scheduler::schedule(){   
 
-	for (int i = 0; i < nTasks; i++){
-		if (taskList[i]->isActive() && taskList[i]->updateAndCheckTime(basePeriod)){
-			taskList[i]->tick();
-		}
-	}
+    Serial.println("Waiting for next tick");
+    Timer_1->waitForNextTick();
+    Serial.println("Tick");
+  
+    for (int i = 0; i <= nTasks; i++){
+        if (taskList[i]->isActive()){
+            taskList[i]->tick();
+        }
+    }
+
 }

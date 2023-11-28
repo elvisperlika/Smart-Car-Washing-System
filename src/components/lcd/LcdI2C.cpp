@@ -1,4 +1,4 @@
-#include "LcdI2C.h"
+#include "components/lcd/LcdI2C.h"
 
 LcdI2C::LcdI2C(unsigned short I2CAddress, int columns, int rows, unsigned short sdaPin, unsigned short sclPin) : Lcd() {
     this->lcd = LiquidCrystal_I2C(I2CAddress, columns, rows);

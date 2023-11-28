@@ -8,12 +8,12 @@ BlinkTask::BlinkTask(int period, CarWash *carWash) : Task(period, carWash) {
 void BlinkTask::tick() {
     switch (state){
     case OFF:
-      //led->switchOn();
-      state = ON; 
-      break;
+        //led->switchOn();
+        state = ON; 
+        break;
     case ON:
-      //led->switchOff();
-      state = OFF;
-      break;
-  }
+        //led->switchOff();
+        state = OFF;
+        break;
+    }
 }
