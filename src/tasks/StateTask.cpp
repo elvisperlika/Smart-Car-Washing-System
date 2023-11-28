@@ -18,6 +18,7 @@ void StateTask::tick() {
         /* NOT TO FORGET: message deallocation */
         delete msg;
     }
+    this->state = "NOT_DEFINED";
     
     /* switch (this->state) {
     case :
@@ -42,7 +43,7 @@ void StateTask::tick() {
     } */
 
     char dataOut[100];
-    sprintf(dataOut, "{\"temperature\": [%d], \"state\": \"%s\"}", this->temp, state.c_str());
+    sprintf(dataOut, "{\"temperature\": [%d], \"state\": \"%s\"}", this->temp, this->state.c_str());
 
     MsgService.sendMsg(dataOut);
     delay(500);

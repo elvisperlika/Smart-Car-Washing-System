@@ -9,6 +9,7 @@ class StateTask: public Task {
         char data;
         String dataOut;
         int temp;
+        String state;
     public:
         StateTask();
         void init(int period);
