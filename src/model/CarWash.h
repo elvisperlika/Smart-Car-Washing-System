@@ -18,9 +18,9 @@ enum SystemState {
     VEICHLE_WAITING,
     READY_TO_BE_WASHED,
     READY_TO_BE_WASHED_BUTTON_PRESSED,
-    WASHING,
+    CAR_WASHING,
     VEICHLE_LEAVING
-}
+};
 
 class CarWash {
     private:
