@@ -1,16 +1,11 @@
 #include "BlinkTask.h"
-
-BlinkTask::BlinkTask(int pin){
-     
+  
+BlinkTask::BlinkTask(int period, CarWash *carWash) : Task(period, carWash) {
+  //led = new Led(pin); 
+  state = OFF;    
 }
   
-void BlinkTask::init(int period){
-    Task::init(period);
-    //led = new Led(pin); 
-    state = OFF;    
-}
-  
-void BlinkTask::tick(){
+void BlinkTask::tick() {
     switch (state){
     case OFF:
         //led->switchOn();

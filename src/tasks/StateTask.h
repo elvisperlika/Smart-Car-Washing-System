@@ -11,8 +11,7 @@ class StateTask: public Task {
         int temp;
         String state;
     public:
-        StateTask();
-        void init(int period);
+        StateTask(int period, CarWash *carWash);
         void tick();
 };
 

@@ -6,15 +6,15 @@
 Scheduler sched;
 Task *accessTask;
 Task *stateTask;
+CarWash *carWash;
 
 void setup()
 {
-    accessTask = new AccessTask(9);
-    accessTask->init(100);
+    carWash = new CarWash();
+    accessTask = new AccessTask(100, carWash);
     // sched.addTask(accessTask);
 
-    stateTask = new StateTask();
-    stateTask->init(100);
+    stateTask = new StateTask(100, carWash);
     stateTask->setActive(true);
     sched.addTask(stateTask);
 

@@ -1,11 +1,10 @@
 #include "tasks/StateTask.h"
 #include "StateTask.h"
 
-StateTask::StateTask() {}
-
-void StateTask::init(int period) {
-  Task::init(period);
-  MsgService.init();
+StateTask::StateTask(int period, CarWash *carWash) : Task(period, carWash) {
+    this->temp = 0;
+    this->state = "NOT_DEFINED";
+    MsgService.init();
 }
 
 void StateTask::tick() {
