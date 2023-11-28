@@ -29,7 +29,7 @@ void Scheduler::schedule(){
     Timer_1->waitForNextTick();
   
     for (int i = 0; i <= nTasks; i++){
-        if (taskList[i]->isActive()){
+        if (taskList[i]->isActive() && taskList[i]->updateAndCheckTime(basePeriod)){
             taskList[i]->tick();
         }
     }

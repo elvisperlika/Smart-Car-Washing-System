@@ -42,7 +42,7 @@ void StateTask::tick() {
     } */
 
     char dataOut[100];
-    sprintf(dataOut, "{\"temperature\": [%d], \"state\": \"%s\"}", this->temp, this->state.c_str());
+    sprintf(dataOut, "{\"temperature\": \"%d,\" \"state\": \"%s\"}", this->temp, this->state.c_str());
 
     MsgService.sendMsg(dataOut);
     
