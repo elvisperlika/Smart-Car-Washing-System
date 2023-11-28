@@ -2,9 +2,9 @@
 #define LCDI2C_H
 
 #include <LiquidCrystal_I2C.h>
-#include "../Component.h"
+#include "Lcd.h"
 
-class LcdI2C : public Component {
+class LcdI2C : public Lcd {
     private:
         LcdI2C(Pin pins[], int numPins);
 

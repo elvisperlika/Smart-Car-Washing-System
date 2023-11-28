@@ -11,8 +11,7 @@ class BlinkTask: public Task {
     enum { ON, OFF} state;
 
     public:
-        BlinkTask(int pin);  
-        void init(int period);  
+        BlinkTask(int period, CarWash *carWash);
         void tick();
 };
 

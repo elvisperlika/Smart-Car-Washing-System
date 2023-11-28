@@ -1,37 +1,25 @@
 #ifndef __TASK__
 #define __TASK__
 
+#include "../model/CarWash.h"
+
 class Task {
-  int myPeriod;
-  int timeElapsed;
-  bool active;
-  
-  public:
-  virtual void init(int period){
-    myPeriod = period;  
-    timeElapsed = 0;
-    active = true;
-  }
+	protected:
+		CarWash *carWash;
+		int myPeriod;
+		int timeElapsed;
+		bool active;
+	
+	public:
+		Task(int period, CarWash *carWash);
 
-  virtual void tick() = 0;
+		virtual void tick() = 0;
 
-  bool updateAndCheckTime(int basePeriod){
-    timeElapsed += basePeriod;
-    if (timeElapsed >= myPeriod){
-      timeElapsed = 0;
-      return true;
-    } else {
-      return false; 
-    }
-  }
+		bool updateAndCheckTime(int basePeriod);
 
-  bool isActive(){
-    return active;
-  }
+		bool isActive();
 
-  void setActive(bool active){
-    this->active = active;
-  }
+		void setActive(bool active);
   
 };
 
