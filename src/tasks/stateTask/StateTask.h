@@ -9,6 +9,7 @@ class StateTask: public Task {
         char data;
         String dataOut;
         String state;
+        String buffer;
     public:
         StateTask(int period, CarWash *carWash);
         void tick();
