@@ -1,5 +1,5 @@
-#ifndef __TASK__
-#define __TASK__
+#ifndef __TASK_H__
+#define __TASK_H__
 
 #include "../model/CarWash.h"
 

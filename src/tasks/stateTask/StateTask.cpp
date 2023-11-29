@@ -1,4 +1,3 @@
-#include "tasks/StateTask.h"
 #include "StateTask.h"
 
 StateTask::StateTask(int period, CarWash *carWash) : Task(period, carWash) {

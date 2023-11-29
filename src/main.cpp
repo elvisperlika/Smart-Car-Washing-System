@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <Scheduler.h>
-#include "tasks/AccessTask.h"
-#include "tasks/StateTask.h"
+#include "tasks/tempCheckTask/TempCheckTask.h"
+#include "tasks/stateTask/StateTask.h"
 
 Scheduler sched;
 Task *accessTask;
@@ -11,7 +11,7 @@ CarWash *carWash;
 void setup()
 {
     carWash = new CarWash();
-    accessTask = new AccessTask(100, carWash);
+    accessTask = new TempCheckTask(100, carWash);
     // sched.addTask(accessTask);
 
     stateTask = new StateTask(1000, carWash);

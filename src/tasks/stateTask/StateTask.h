@@ -1,6 +1,6 @@
-#ifndef __STATETASK__
-#define __STATETASK__
-#include "Task.h"
+#ifndef __STATE_TASK_H__
+#define __STATE_TASK_H__
+#include "../Task.h"
 #include "components/msg/MsgService.h"
 
 class StateTask: public Task {

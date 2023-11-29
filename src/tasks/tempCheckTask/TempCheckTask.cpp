@@ -1,22 +1,16 @@
-#include "TempCheck.h"
+#include "TempCheckTask.h"
 
-extern bool isWashing;
-extern float temp;
-extern bool alert;
-
-TempCheck::TempCheck(int period, CarWash *carWash) : Task(period, carWash) { 
+TempCheckTask::TempCheckTask(int period, CarWash *carWash) : Task(period, carWash) { 
     state = T_NORM;
-    alert = false;
 }
 
-void TempCheck::tick() {
-    temp = tempSensor->getTemperature();
+void TempCheckTask::tick() {
+    float temp = carWash->getTemperature();
     
-    if(isWashing) {
+    if(carWash->getState() == SystemState::CAR_WASHING) {
         switch (state) {
             case T_NORM:
                 if (temp > WARNING_TEMP) {
-                    state = HIGH_TEMP;
                     tHighTemp = millis();
                 }
                 break;
@@ -24,7 +18,7 @@ void TempCheck::tick() {
                 if(temp <= WARNING_TEMP){
                     state = T_NORM;
                 }
-                if (millis() - tHighTemp >= T_HIGH_TEMP) {
+                if (millis() - tHighTemp >= MAX_TEMPERATURE) {
                     state = ALERT;
                 }
                 break;

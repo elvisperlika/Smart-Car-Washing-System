@@ -10,7 +10,7 @@ CarWash::CarWash() {
     servoMotor = new ServoMotorImpl(GATE_PIN);
     lcd = new LcdI2C();
     
-    systemState = SystemState::SLEEP;
+    systemState = SystemState::SYSTEM_SLEEP;
     suspended = false;
 }
 
