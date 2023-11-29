@@ -1,5 +1,5 @@
-#ifndef __TEMP_CHECK_TASK__
-#define __TEMP_CHECK_TASK__
+#ifndef __TEMP_CHECK_TASK_H__
+#define __TEMP_CHECK_TASK_H__
 
 #define WARNING_TEMP 60
 
