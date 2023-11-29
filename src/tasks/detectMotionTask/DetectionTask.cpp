@@ -37,6 +37,11 @@ void DetectionTask::tick() {
             break;
         
         case SLEEP:
+            carWash->setSuspended(true);
+
+            if (carWash->getState() == SystemState::DETECTION) {
+                state = CAR_NOT_DETECTED;
+            }
             break;
         
         default:        
