@@ -1,10 +1,10 @@
-#ifndef __TEMPCHECK__
-#define __TEMPCHECK__
+#ifndef __TEMP_CHECK_TASK__
+#define __TEMP_CHECK_TASK__
 
 #define WARNING_TEMP 60
 
-#include "Task.h"
-#include "../components/termometer/TempSensorTMP36.h"
+#include "../Task.h"
+#include "components/termometer/TempSensorTMP36.h"
 #include <Arduino.h>
 
 class TempCheck: public Task {

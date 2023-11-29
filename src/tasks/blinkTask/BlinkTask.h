@@ -1,7 +1,7 @@
-#ifndef __BLINKTASK__
-#define __BLINKTASK__
+#ifndef __BLINK_TASK_H__
+#define __BLINK_TASK_H__
 
-#include "Task.h"
+#include "../Task.h"
 // #include "Led.h"
 
 class BlinkTask: public Task {
