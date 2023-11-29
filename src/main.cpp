@@ -10,6 +10,7 @@ CarWash *carWash;
 
 void setup()
 {
+    Serial.begin(9600);
     carWash = new CarWash();
     accessTask = new TempCheckTask(100, carWash);
     // sched.addTask(accessTask);
@@ -20,7 +21,6 @@ void setup()
     sched.addTask(stateTask);
 
     sched.init(100);
-    Serial.begin(9600);
 }
 
 void loop()
