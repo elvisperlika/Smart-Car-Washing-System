@@ -16,7 +16,6 @@ enum SystemState {
     SYSTEM_SLEEP,
     DETECTION,
     WELCOME,
-    VEICHLE_APPROCHING,
     VEICHLE_WAITING,
     READY_TO_BE_WASHED,
     READY_TO_BE_WASHED_BUTTON_PRESSED,
@@ -34,13 +33,14 @@ class CarWash {
         DistanceSensor *distanceSensor;
         ServoMotor *servoMotor;
         Lcd *lcd;
+        Button *button;
 
         SystemState systemState;
         bool suspended;
-        char* enumStrings[8] = {
+        const char* enumStrings[9] = {
             "SLEEP",
+            "DETECTION",
             "WELCOME",
-            "VEICHLE_APPROCHING",
             "VEICHLE_WAITING",
             "READY_TO_BE_WASHED",
             "READY_TO_BE_WASHED_BUTTON_PRESSED",
@@ -57,13 +57,14 @@ class CarWash {
         bool getPresence();
         float getTemperature();
         int getDistance();
+        bool isButtonPressed();
         ServoMotor *getServoMotor();
         Lcd *getLcd();
         SystemState getState();
         void setState(SystemState newState);
         bool isSuspended();
         void setSuspended(bool newState);
-        char* enumToString(enum SystemState value);
+        const char* enumToString(enum SystemState value);
         void errorTempratureFixed();
 
 };
