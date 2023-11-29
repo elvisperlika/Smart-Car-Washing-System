@@ -1,11 +1,9 @@
 #include "ButtonTask.h"
 
-ButtonTask::ButtonTask(Button* button) {
-    buttonPtr = button;
-}
+ButtonTask::ButtonTask(int period, CarWash *carWash) : Task(period, carWash) { }
 
 void ButtonTask::checkButtonState() {
-    if (SystemState::READY_TO_BE_WASHED && !SystemState::READY_TO_BE_WASHED_BUTTON_PRESSED && buttonPtr->isClicked()) {
-        SystemState::READY_TO_BE_WASHED_BUTTON_PRESSED;
+    if (carWash->getState() == READY_TO_BE_WASHED && carWash->isButtonPressed()) {
+        carWash->setState(READY_TO_BE_WASHED_BUTTON_PRESSED);
     }
 }
