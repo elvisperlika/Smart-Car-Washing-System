@@ -9,6 +9,7 @@ CarWash::CarWash() {
     distanceSensor = new Sonar(DISTANCE_SENSOR_ECHO_PIN, DISTANCE_SENSOR_TRIG_PIN, MAX_DISTANCE_TIME);
     servoMotor = new ServoMotorImpl(GATE_PIN);
     lcd = new LcdI2C();
+    button = new ButtonImpl(BUTTON_PIN);
     
     systemState = SystemState::SYSTEM_SLEEP;
     suspended = false;
