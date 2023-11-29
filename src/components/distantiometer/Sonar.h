@@ -12,7 +12,6 @@ class Sonar: public DistanceSensor {
         float getSoundSpeed();
 
         float temperature;
-        int echoPin, trigPin;
         long timeOut;
 
     public:

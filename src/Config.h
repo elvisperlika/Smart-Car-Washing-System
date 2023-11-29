@@ -26,8 +26,6 @@
 
 // Other Constants
 #define BAUD_RATE 9600
-#define MAX_DISTANCE_TIME 1l // milliseconds time limit to wait for a distance sensor range
-#define MAX_DISTANCE 10
 #define MAX_TEMPERATURE 40
 
 #endif
