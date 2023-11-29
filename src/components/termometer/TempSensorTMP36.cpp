@@ -1,6 +1,6 @@
 #include "TempSensorTMP36.h"
 
-#define VOLT_FACTOR ((float)0.0048828145)
+#define VOLT_FACTOR ((float)5 / 1024)
 
 TempSensorTMP36::TempSensorTMP36(unsigned short pin) : TempSensor(pin) {
 }
