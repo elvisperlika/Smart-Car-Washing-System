@@ -19,7 +19,7 @@ void setup()
     stateTask->setActive(true);
     sched.addTask(stateTask);
 
-    sched.init(200);
+    sched.init(100);
     Serial.begin(9600);
 }
 
