@@ -1,16 +1,13 @@
-#ifndef BUTTONTASK_H
-#define BUTTONTASK_H
+#ifndef __BUTTON_TASK_H__
+#define __BUTTON_TASK_H__
 
-#include "Task.h"
+#include "../Task.h"
 #include <Arduino.h>
 
-class ButtonTask {
+class ButtonTask : public Task {
 public:
-    ButtonTask(Button* button); // Costruttore che prende un puntatore a un oggetto Button
-    void checkButtonState(); // Metodo per controllare lo stato del bottone
-
-private:
-    Button* buttonPtr; // Puntatore all'oggetto Button
+    ButtonTask(int period, CarWash *carWash);
+    void checkButtonState();
 };
 
-#endif // BUTTONTASK_H
+#endif
