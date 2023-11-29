@@ -2,7 +2,7 @@
 #define __ACCESS_TASK__H__
 
 #include "../Task.h"
-#include "components/servo/servo_motor_impl.h"
+#include "components/servo/ServoMotorImpl.h"
 
 class AccessTask: public Task {
     enum { CLOSE, WAITING_TO_OPEN, IN_OPENING, OPEN, WAITING_TO_CLOSE, IN_CLOSING } state;
