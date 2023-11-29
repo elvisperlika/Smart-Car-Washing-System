@@ -1,15 +1,16 @@
 #ifndef __CARWASH__
 #define __CARWASH__
 
-#include "../Config.h"
-#include "../components/button/Button.h"
-#include "../components/distantiometer/Sonar.h"
+#include "Config.h"
+#include "components/button/Button.h"
+#include "components/distantiometer/Sonar.h"
 #include "components/servo/servo_motor_impl.h"
-#include "../components/lcd/Lcd.h"
-#include "../components/lcd/LcdI2C.h"
-#include "../components/light/Led.h"
-#include "../components/presentiometer/HCSR501.h"
-#include "../components/termometer/TempSensorTMP36.h"
+#include "components/lcd/Lcd.h"
+#include "components/lcd/LcdI2C.h"
+#include "components/light/Led.h"
+#include "components/presentiometer/HCSR501.h"
+#include "components/termometer/TempSensorTMP36.h"
+#include "components/button/ButtonImpl.h"
 
 
 enum SystemState {
