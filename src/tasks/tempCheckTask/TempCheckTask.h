@@ -7,14 +7,14 @@
 #include "components/termometer/TempSensorTMP36.h"
 #include <Arduino.h>
 
-class TempCheck: public Task {
-    TempSensor* tempSensor;
+class TempCheckTask: public Task {
     enum { T_NORM, HIGH_TEMP, ALERT } state;
     uint8_t tHighTemp;
     static uint8_t T_HIGH_TEMP;
+    bool alert = false;
 
 public:
-    TempCheck(int period, CarWash *carWash);
+    TempCheckTask(int period, CarWash *carWash);
     void tick();
 };
 
