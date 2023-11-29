@@ -38,6 +38,10 @@ int CarWash::getDistance() {
     return distanceSensor->getDistance();
 }
 
+bool CarWash::isButtonPressed() {
+    return button->isClicked();
+}
+
 ServoMotor *CarWash::getServoMotor() {
     return servoMotor;
 }
