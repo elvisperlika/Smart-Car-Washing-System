@@ -17,7 +17,7 @@ void WashTask::tick() {
                 suspendedTime = 0;
             }
             break;
-                
+            
         case WASHING:
             if (millis() - washingTime - (millis() - suspendedTime) < T3) {
                 carWash->setState(SystemState::VEICHLE_LEAVING);

@@ -1,7 +1,7 @@
-#ifndef __ACCESS_TASK__
-#define __ACCESS_TASK__
+#ifndef __ACCESS_TASK__H__
+#define __ACCESS_TASK__H__
 
-#include "tasks/Task.h"
+#include "../Task.h"
 #include "components/servo/servo_motor_impl.h"
 
 class AccessTask: public Task {

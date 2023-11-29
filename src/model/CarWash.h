@@ -13,7 +13,8 @@
 
 
 enum SystemState {
-    SLEEP,
+    SYSTEM_SLEEP,
+    DETECTION,
     WELCOME,
     VEICHLE_APPROCHING,
     VEICHLE_WAITING,

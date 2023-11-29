@@ -1,7 +1,7 @@
-#ifndef __WASHTASK__
-#define __WASHTASK__
+#ifndef __WASH_TASK_H__
+#define __WASH_TASK_H__
 
-#include "Task.h"
+#include "../Task.h"
 #include <Arduino.h>
 
 enum TaskState{

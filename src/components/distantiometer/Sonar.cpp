@@ -17,7 +17,7 @@ float Sonar::getSoundSpeed() {
     return 331.5 + 0.6*temperature;
 }
 
-float Sonar::getDistance(){
+float Sonar::getDistance() {
     digitalWrite(trigPin,LOW);
     delayMicroseconds(3);
     digitalWrite(trigPin,HIGH);
