@@ -66,3 +66,7 @@ void CarWash::setSuspended(bool newState) {
 const char* CarWash::enumToString(enum SystemState value) {
     return enumStrings[value];
 }
+
+void CarWash::errorTempratureFixed() {
+    setSuspended(false);
+}
