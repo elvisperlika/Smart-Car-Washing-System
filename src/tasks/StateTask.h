@@ -8,7 +8,6 @@ class StateTask: public Task {
         Msg* msg;
         char data;
         String dataOut;
-        int temp;
         String state;
     public:
         StateTask(int period, CarWash *carWash);

@@ -36,6 +36,16 @@ class CarWash {
 
         SystemState systemState;
         bool suspended;
+        char* enumStrings[8] = {
+            "SLEEP",
+            "WELCOME",
+            "VEICHLE_APPROCHING",
+            "VEICHLE_WAITING",
+            "READY_TO_BE_WASHED",
+            "READY_TO_BE_WASHED_BUTTON_PRESSED",
+            "CAR_WASHING",
+            "VEICHLE_LEAVING"
+        };
         
 
     public:
@@ -52,6 +62,8 @@ class CarWash {
         void setState(SystemState newState);
         bool isSuspended();
         void setSuspended(bool newState);
+        char* enumToString(enum SystemState value);
+        void errorTempratureFixed();
 
 };
 

@@ -61,3 +61,8 @@ bool CarWash::isSuspended() {
 void CarWash::setSuspended(bool newState) {
     suspended = newState;
 }
+
+// Function to convert enum to string
+char* CarWash::enumToString(enum SystemState value) {
+    return enumStrings[value];
+}
