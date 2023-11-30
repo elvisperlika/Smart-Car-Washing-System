@@ -25,7 +25,7 @@ bool Scheduler::addTask(Task* task){
 }
   
 void Scheduler::schedule(){   
-
+    
     Timer_1->waitForNextTick();
 
     for (int i = 0; i <= nTasks; i++){

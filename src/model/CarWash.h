@@ -21,6 +21,7 @@ enum SystemState {
     READY_TO_BE_WASHED,
     READY_TO_BE_WASHED_BUTTON_PRESSED,
     CAR_WASHING,
+    CAR_WASHING_ERROR,
     VEICHLE_LEAVING
 };
 
@@ -46,6 +47,7 @@ class CarWash {
             "READY_TO_BE_WASHED",
             "READY_TO_BE_WASHED_BUTTON_PRESSED",
             "CAR_WASHING",
+            "CAR_WASHING_ERROR",
             "VEICHLE_LEAVING"
         };
         

@@ -10,26 +10,25 @@ void TempCheckTask::tick() {
     if(carWash->getState() == SystemState::CAR_WASHING) {
         switch (state) {
             case T_NORM:
-                if (temp > WARNING_TEMP) {
+                if (temp > MAX_TEMPERATURE) {
                     tHighTemp = millis();
+                    state = HIGH_TEMP;
                 }
                 break;
             case HIGH_TEMP:
-                if(temp <= WARNING_TEMP){
+                if(temp <= MAX_TEMPERATURE){
                     state = T_NORM;
                 }
-                if (millis() - tHighTemp >= MAX_TEMPERATURE) {
+                if (millis() - tHighTemp >= MAX_TEMPERATURE_TIME) {
                     state = ALERT;
+                    carWash->setState(SystemState::CAR_WASHING_ERROR);
                 }
                 break;
             case ALERT:
-                if (!alert) {
+                if (!carWash->isSuspended()) {
                     state = T_NORM;
                 }
                 break;
         }
-    } else {
-        state = T_NORM;
-        alert = false;
     }
 }

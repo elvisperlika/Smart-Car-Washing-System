@@ -3,7 +3,7 @@
 #include "../Task.h"
 #include <Arduino.h>
 
-enum TaskState { 
+enum DetectionTaskStates { 
     CAR_NOT_DETECTED,
     CAR_DETECTED,
     CHECK_IN,
@@ -12,7 +12,7 @@ enum TaskState {
 
 class DetectionTask: public Task {
     private:
-        TaskState state;
+        DetectionTaskStates state;
         unsigned long tCarDetected;
         unsigned long tStart;
     public:

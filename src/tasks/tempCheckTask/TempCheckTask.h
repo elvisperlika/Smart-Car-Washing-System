@@ -1,8 +1,6 @@
 #ifndef __TEMP_CHECK_TASK_H__
 #define __TEMP_CHECK_TASK_H__
 
-#define WARNING_TEMP 60
-
 #include "../Task.h"
 #include "components/termometer/TempSensorTMP36.h"
 #include <Arduino.h>
