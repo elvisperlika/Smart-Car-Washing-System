@@ -3,7 +3,7 @@
 #include "../Task.h"
 #include "components/msg/MsgService.h"
 
-class StateTask: public Task {
+class CommunicationTask: public Task {
     private: 
         Msg* msg;
         char data;
@@ -11,7 +11,7 @@ class StateTask: public Task {
         String state;
         String buffer;
     public:
-        StateTask(int period, CarWash *carWash);
+        CommunicationTask(int period, CarWash *carWash);
         void tick();
 };
 

@@ -1,14 +1,14 @@
 #include <Arduino.h>
 #include <Scheduler.h>
 #include "tasks/tempCheckTask/TempCheckTask.h"
-#include "tasks/stateTask/StateTask.h"
+#include "tasks/communicationTask/CommunicationTask.h"
 #include "tasks/detectMotionTask/DetectionTask.h"
 
 Scheduler sched;
 CarWash *carWash;
 
 Task *accessTask;
-Task *stateTask;
+Task *communicationTask;
 Task *detectMotionTask;
 
 void setup()
@@ -23,12 +23,12 @@ void setup()
     detectMotionTask->setName("DetectionTask");
     detectMotionTask->setActive(true);
 
-    stateTask = new StateTask(1000, carWash);
-    stateTask->setName("StateTask");
-    stateTask->setActive(true);
+    communicationTask = new CommunicationTask(1000, carWash);
+    communicationTask->setName("StateTask");
+    communicationTask->setActive(true);
 
     sched.addTask(detectMotionTask);
-    sched.addTask(stateTask);
+    sched.addTask(communicationTask);
 }
 
 void loop()

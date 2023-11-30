@@ -1,10 +1,10 @@
-#include "StateTask.h"
+#include "CommunicationTask.h"
 
-StateTask::StateTask(int period, CarWash *carWash) : Task(period, carWash) {
+CommunicationTask::CommunicationTask(int period, CarWash *carWash) : Task(period, carWash) {
     MsgService.init();
 }
 
-void StateTask::tick() {
+void CommunicationTask::tick() {
     if (MsgService.isMsgAvailable()) {
         Msg* msg = MsgService.receiveMsg();    
         if (msg->getContent() == "1"){
