@@ -1,35 +1,21 @@
 #include "Sonar.h"
 
-Sonar::Sonar(unsigned short echoP, unsigned short trigP, long maxTime) : echoPin(echoP), trigPin(trigP), timeOut(maxTime) {
-    temperature = 20; // default value
-
-    Pin pins[2] = { Pin(trigPin, OUTPUT), Pin(echoPin, INPUT) };
-    Sonar(pins, 2);
+Sonar::Sonar(unsigned short echoP, unsigned short trigP, long maxTime) : DistanceSensor(new Pin[2]{Pin(trigP, OUTPUT), Pin(echoP, INPUT)}, 2) {
+    
+    // AGGIUNGERE IL MAX DIST IN SENSOR
+    
+    timeOut = maxTime;
 }
 
 Sonar::Sonar(Pin pins[], int numPins) : DistanceSensor(pins, numPins) { }
 
-void Sonar::setTemperature(float temp){
-    temperature = temp;
-}
-
-float Sonar::getSoundSpeed() {
-    return 331.5 + 0.6*temperature;
-}
-
 float Sonar::getDistance() {
-    digitalWrite(trigPin,LOW);
-    delayMicroseconds(3);
-    digitalWrite(trigPin,HIGH);
-    delayMicroseconds(5);
-    digitalWrite(trigPin,LOW);
-
-    unsigned long tUS = pulseIn(echoPin, HIGH, timeOut);
-    if (tUS == 0) {
-        return NO_OBJ_DETECTED;
-    } else {
-        float t = tUS / 1000.0 / 1000.0 / 2;
-        float d = t*getSoundSpeed();
-        return d;
-    }
+    digitalWrite(pins[0].getPinNumber(), LOW);
+    delayMicroseconds(2);
+    digitalWrite(pins[0].getPinNumber(), HIGH);
+    delayMicroseconds(10);
+    digitalWrite(pins[0].getPinNumber(), LOW);
+    long duration = pulseIn(pins[1].getPinNumber(), HIGH);
+    long distance= duration*0.034/2;
+    return distance;
 }

@@ -11,9 +11,10 @@ bool Led::isOn() {
 }
 
 void Led::fading() {
-    if ((currentLight >= 255 && fadeState == true) || (currentLight <= 0 && fadeState == false)) {
+    if ((currentLight >= 255 && fadeState) || (currentLight <= 0 && !fadeState)) {
         fadeState = !fadeState;
     }
-    currentLight += fadeState ? 1 : -1;
-    digitalWrite(this->pins[0].getPinNumber(), currentLight);
+    currentLight += fadeState ? FADE_STEP : -FADE_STEP;
+    Serial.println(currentLight);
+    analogWrite(this->pins[0].getPinNumber(), currentLight);
 }
