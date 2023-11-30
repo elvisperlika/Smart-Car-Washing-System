@@ -29,5 +29,6 @@
 #define MAX_DISTANCE_TIME 1000000l // microsecond time limit to wait for a distance sensor range
 #define MAX_DISTANCE 10
 #define MAX_TEMPERATURE 40
+#define MAX_TEMPERATURE_TIME 3000l
 
 #endif
