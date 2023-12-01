@@ -4,7 +4,7 @@
 #include "Config.h"
 #include "components/button/Button.h"
 #include "components/distantiometer/Sonar.h"
-#include "components/servoVer2/ServoMImpl.h"
+#include "components/servo/ServoMImpl.h"
 #include "components/lcd/Lcd.h"
 #include "components/lcd/LcdI2C.h"
 #include "components/light/Led.h"

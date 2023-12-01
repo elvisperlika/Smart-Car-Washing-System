@@ -40,7 +40,8 @@ void DetectionTask::tick() {
             carWash->setSuspended(true);
 
             if (carWash->getState() == SystemState::DETECTION) {
-                state = CAR_NOT_DETECTED;
+                tCarDetected = millis();
+                state = CAR_DETECTED;
             }
             break;
         

@@ -20,7 +20,7 @@ void WashTask::tick() {
             
         case WASHING:
             if (millis() - washingTime - (millis() - suspendedTime) < T3) {
-                carWash->setState(SystemState::VEICHLE_LEAVING);
+                carWash->setState(SystemState::CHECK_OUT);
                 break;
             }
 
@@ -33,7 +33,7 @@ void WashTask::tick() {
                 
         case TEMPERATURE_WARNING:
             if (millis() - washingTime - (millis() - suspendedTime) < T3) {
-                carWash->setState(SystemState::VEICHLE_LEAVING);
+                carWash->setState(SystemState::CHECK_OUT);
                 break;
             }
 
