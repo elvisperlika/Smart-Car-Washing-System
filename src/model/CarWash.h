@@ -4,7 +4,7 @@
 #include "Config.h"
 #include "components/button/Button.h"
 #include "components/distantiometer/Sonar.h"
-#include "components/servoVer2/ServoMImpl.h"
+#include "components/servo/ServoMImpl.h"
 #include "components/lcd/Lcd.h"
 #include "components/lcd/LcdI2C.h"
 #include "components/light/Led.h"
@@ -16,13 +16,13 @@
 enum SystemState {
     SYSTEM_SLEEP,
     DETECTION,
-    WELCOME,
+    CHECK_IN,
     VEICHLE_WAITING,
     READY_TO_BE_WASHED,
     READY_TO_BE_WASHED_BUTTON_PRESSED,
     CAR_WASHING,
     CAR_WASHING_ERROR,
-    VEICHLE_LEAVING
+    CHECK_OUT
 };
 
 class CarWash {

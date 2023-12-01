@@ -5,9 +5,15 @@
 #include <Arduino.h>
 
 class ButtonTask : public Task {
-public:
-    ButtonTask(int period, CarWash *carWash);
-    void checkButtonState();
+    private:
+        enum ButtonTaskStates {
+            OFFLINE,
+            BUTTON_PRESSED
+        };
+        ButtonTaskStates state;
+    public:
+        ButtonTask(int period, CarWash *carWash);
+        void tick();
 };
 
 #endif

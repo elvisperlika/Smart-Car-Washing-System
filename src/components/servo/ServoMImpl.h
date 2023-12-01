@@ -1,6 +1,10 @@
 #ifndef SERVOIMPL_H
 #define SERVOIMPL_H
-#include "components/servoVer2/ServoM.h"
+
+#define CLOSE_GATE_DEGREE 180
+#define OPEN_GATE_DEGREE 70
+
+#include "ServoM.h"
 #include <ServoTimer2.h>
 
 class ServoMImpl : public ServoM {
@@ -10,7 +14,8 @@ class ServoMImpl : public ServoM {
     public:
         ServoMImpl(unsigned short pin);
         void setPosition(int _angle);
-        
+        bool isClose();
+        bool isOpen();
 };
 
 #endif

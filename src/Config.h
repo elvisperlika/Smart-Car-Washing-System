@@ -5,8 +5,8 @@
 #define LED1_PIN 3
 #define LED2_PIN 4
 #define LED3_PIN 5
-#define MOTION_SENSOR_PIN 7
-#define GATE_PIN 8
+#define MOTION_SENSOR_PIN 6
+#define GATE_PIN 7
 #define BUTTON_PIN 8
 #define DISTANCE_SENSOR_TRIG_PIN 10
 #define DISTANCE_SENSOR_ECHO_PIN 11
@@ -27,6 +27,7 @@
 // Other Constants
 #define BAUD_RATE 9600
 #define MAX_DISTANCE_TIME 1000000l // microsecond time limit to wait for a distance sensor range
+#define MIN_DISTANCE 2
 #define MAX_DISTANCE 10
 #define MAX_TEMPERATURE 40
 #define MAX_TEMPERATURE_TIME 3000l

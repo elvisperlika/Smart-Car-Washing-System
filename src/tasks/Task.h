@@ -1,7 +1,7 @@
 #ifndef __TASK_H__
 #define __TASK_H__
 
-#include "../model/CarWash.h"
+#include "model/CarWash.h"
 
 class Task {
 	protected:

@@ -1,5 +1,5 @@
-#ifndef __STATE_TASK_H__
-#define __STATE_TASK_H__
+#ifndef __COMMUNICATION_TASK_H__
+#define __COMMUNICATION_TASK_H__
 #include "../Task.h"
 #include "components/msg/MsgService.h"
 
