@@ -19,7 +19,7 @@ void setup()
     sched.init(100);
 
     carWash = new CarWash();
-    accessTask = new AccessTask(1000, carWash);
+    accessTask = new AccessTask(500, carWash);
     accessTask->setName("AccessTask");
     accessTask->setActive(true);
 
@@ -33,8 +33,8 @@ void setup()
 
 
     sched.addTask(accessTask);
-    /* sched.addTask(detectMotionTask);
-    sched.addTask(communicationTask); */
+    sched.addTask(detectMotionTask);
+    sched.addTask(communicationTask);
 }
 
 void loop()

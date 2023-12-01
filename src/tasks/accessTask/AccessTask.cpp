@@ -17,29 +17,28 @@ void AccessTask::tick() {
     Serial.println(gateState);
     switch (gateState) {
         case GATE_STATE::CLOSE:
-            gateState = GATE_STATE::IN_OPENING;
+            gateState = GATE_STATE::OPENING;
             break;
-        case GATE_STATE::WAITING_TO_OPEN:
-            break;
-        case GATE_STATE::IN_OPENING:
-            angle -= 10;
+        case GATE_STATE::OPENING:
+            angle -= 5;
             this->carWash->getServoMotor()->setPosition(angle);
             if (angle <= 70)
             {
-               // gateState = GATE_STATE::OPEN;
+                gateState = GATE_STATE::OPEN;
             }
-        case GATE_STATE::OPEN:
-            gateState = GATE_STATE::IN_CLOSING;
             break;
-        case GATE_STATE::IN_CLOSING:
-            angle += 10;
+        case GATE_STATE::OPEN:
+            gateState = GATE_STATE::CLOSING;
+            break;
+        case GATE_STATE::CLOSING:
+            angle += 5;
             this->carWash->getServoMotor()->setPosition(angle);
             if (angle >= 180)
             {
                 gateState = GATE_STATE::CLOSE;
             }
-
-            
+            break;
+      
     }
 
 }

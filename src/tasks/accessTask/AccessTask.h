@@ -3,7 +3,7 @@
 
 #include "../Task.h"
 
-enum GATE_STATE { CLOSE, WAITING_TO_OPEN, IN_OPENING, OPEN, WAITING_TO_CLOSE, IN_CLOSING };
+enum GATE_STATE { CLOSE, OPENING, OPEN, CLOSING };
 
 class AccessTask: public Task {
     private:
