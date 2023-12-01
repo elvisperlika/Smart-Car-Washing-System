@@ -1,6 +1,8 @@
 #include "ButtonTask.h"
 
-ButtonTask::ButtonTask(int period, CarWash *carWash) : Task(period, carWash) { }
+ButtonTask::ButtonTask(int period, CarWash *carWash) : Task(period, carWash) { 
+    state = ButtonTaskStates::OFFLINE;
+}
 
 void ButtonTask::tick() {
     switch (state)

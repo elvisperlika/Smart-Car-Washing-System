@@ -12,57 +12,45 @@
 Scheduler sched;
 CarWash *carWash;
 
-Task *accessTask;
-Task *communicationTask;
-Task *detectMotionTask;
-
-
 void setup()
 {
-    Serial.begin(9600);
+    Serial.begin(BAUD_RATE);
     carWash = new CarWash();
 
+    sched.init(100);
+
     Task *detectTask = new DetectionTask(100, carWash);
+    detectTask->setName("DetectionTask");
     Task *accessTask = new AccessTask(100, carWash);
+    accessTask->setName("AccessTask");
     Task *sleepTask = new SleepModeTask(100, carWash);
+    sleepTask->setName("SleepModeTask");
     Task *checkInOutTask = new CheckInOutTask(100, carWash);
+    checkInOutTask->setName("CheckInOutTask");
     Task *buttonTask = new ButtonTask(100, carWash);
+    buttonTask->setName("ButtonTask");
     Task *washTask = new WashTask(100, carWash);
+    washTask->setName("WashTask");
     Task *tempCheckTask = new TempCheckTask(100, carWash);
+    tempCheckTask->setName("TempCheckTask");
     Task *communicationTask = new CommunicationTask(100, carWash);
+    communicationTask->setName("CommunicationTask");
     
     sched.addTask(detectTask);
     sched.addTask(accessTask);
     sched.addTask(sleepTask);
     sched.addTask(checkInOutTask);
-    sched.addTask(buttonTask);
+    /*sched.addTask(buttonTask);
     sched.addTask(washTask);
     sched.addTask(tempCheckTask);
-    sched.addTask(communicationTask);
-
-    sched.init(100);
-
-    carWash = new CarWash();
-    accessTask = new AccessTask(500, carWash);
-    accessTask->setName("AccessTask");
-    accessTask->setActive(true);
-
-    detectMotionTask = new DetectionTask(100, carWash);
-    detectMotionTask->setName("DetectionTask");
-    detectMotionTask->setActive(false);
-
-    communicationTask = new CommunicationTask(1000, carWash);
-    communicationTask->setName("StateTask");
-    communicationTask->setActive(true);
-
-
-    sched.addTask(accessTask);
-    sched.addTask(detectMotionTask);
-    sched.addTask(communicationTask);
+    sched.addTask(communicationTask);    */
 }
 
 void loop()
 {
+    Serial.println("PRESTATE:");
+    Serial.println(carWash->getState());
     sched.schedule();
-       
+    Serial.println("POSTSTATE:");
+    Serial.println(carWash->getState());
 }

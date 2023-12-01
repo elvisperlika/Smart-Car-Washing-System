@@ -11,7 +11,7 @@ CarWash::CarWash() {
     lcd = new LcdI2C();
     button = new ButtonImpl(BUTTON_PIN);
     
-    systemState = SystemState::SYSTEM_SLEEP;
+    systemState = SystemState::DETECTION;
     suspended = false;
 }
 

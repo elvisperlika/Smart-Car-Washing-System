@@ -1,6 +1,4 @@
 #include "Scheduler.h"
-#include <Arduino.h>
-#include "components/Timer.h"
 
 Timer* Timer_1;
 
@@ -22,15 +20,13 @@ bool Scheduler::addTask(Task* task){
     }
 }
   
-void Scheduler::schedule(){   
-    
+void Scheduler::schedule(){    
     Timer_1->waitForNextTick();
 
     for (int i = 0; i < nTasks; i++){
-        if (taskList[i]->isActive() && taskList[i]->updateAndCheckTime(basePeriod)){
+        if (taskList[i]->updateAndCheckTime(basePeriod)){
             Serial.println(taskList[i]->getName());
             taskList[i]->tick();
         }
     }
-
 }

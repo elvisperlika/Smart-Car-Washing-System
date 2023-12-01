@@ -8,6 +8,7 @@ enum GATE_STATE { CLOSE, OPENING, OPEN, CLOSING };
 class AccessTask: public Task {
     private:
         GATE_STATE gateState;
+        int angle;
     public:
         AccessTask(int period, CarWash *carWash);
         void tick();

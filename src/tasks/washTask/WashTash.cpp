@@ -2,7 +2,6 @@
 
 WashTask::WashTask(int period, CarWash *carWash) : Task(period, carWash) {
     taskState = TaskState::OFFLINE;
-    setActive(false);
 }
 
 void WashTask::tick() {

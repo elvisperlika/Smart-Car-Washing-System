@@ -16,6 +16,7 @@
 enum SystemState {
     SYSTEM_SLEEP,
     DETECTION,
+    WELCOME,
     CHECK_IN,
     VEICHLE_WAITING,
     READY_TO_BE_WASHED,
