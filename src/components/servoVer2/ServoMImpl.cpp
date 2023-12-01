@@ -7,20 +7,18 @@ ServoMImpl::ServoMImpl(unsigned short pin) : ServoM(pin) {
 }
 
 void ServoMImpl::setPosition(int _angle) {
-    this->angle = _angle;
-    this->servo.write(this->angle);
-}
+    if (_angle > 180) {
+        this->angle = 180;
+    } else if (_angle < 0) {
+        this->angle = 0;
+    }
 
-void ServoMImpl::incOneGrade() {
-    this->angle++;
-    this->servo.write(this->angle);
-}
-
-void ServoMImpl::decOneGrade() {
-    this->angle--;
-    this->servo.write(this->angle);
+    float coeff = (2400.0  - 544.0) / 180;
+    this->servo.write(544 + _angle * coeff);
 }
 
 int ServoMImpl::getAngle() {
-    return this->angle;
+    float coeff = (2400.0  - 544.0) / 180;
+    return this->servo.read() / coeff;
 }
+

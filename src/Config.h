@@ -5,8 +5,8 @@
 #define LED1_PIN 3
 #define LED2_PIN 4
 #define LED3_PIN 5
-#define MOTION_SENSOR_PIN 6
-#define GATE_PIN 7
+#define MOTION_SENSOR_PIN 7
+#define GATE_PIN 8
 #define BUTTON_PIN 8
 #define DISTANCE_SENSOR_TRIG_PIN 10
 #define DISTANCE_SENSOR_ECHO_PIN 11
