@@ -16,9 +16,3 @@ void ServoMImpl::setPosition(int _angle) {
     float coeff = (2400.0  - 544.0) / 180;
     this->servo.write(544 + _angle * coeff);
 }
-
-int ServoMImpl::getAngle() {
-    float coeff = (2400.0  - 544.0) / 180;
-    return this->servo.read() / coeff;
-}
-

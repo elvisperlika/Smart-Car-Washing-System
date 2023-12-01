@@ -10,7 +10,7 @@ class ServoMImpl : public ServoM {
     public:
         ServoMImpl(unsigned short pin);
         void setPosition(int _angle);
-        int getAngle();
+        
 };
 
 #endif

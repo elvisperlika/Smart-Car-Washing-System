@@ -28,6 +28,7 @@ void Scheduler::schedule(){
 
     for (int i = 0; i < nTasks; i++){
         if (taskList[i]->isActive() && taskList[i]->updateAndCheckTime(basePeriod)){
+            Serial.println(taskList[i]->getName());
             taskList[i]->tick();
         }
     }

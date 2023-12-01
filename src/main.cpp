@@ -33,8 +33,8 @@ void setup()
 
 
     sched.addTask(accessTask);
-    sched.addTask(detectMotionTask);
-    sched.addTask(communicationTask);
+    /* sched.addTask(detectMotionTask);
+    sched.addTask(communicationTask); */
 }
 
 void loop()
