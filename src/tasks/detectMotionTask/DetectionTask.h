@@ -3,18 +3,17 @@
 #include "../Task.h"
 #include <Arduino.h>
 
-enum DetectionTaskStates { 
-    CAR_NOT_DETECTED,
-    CAR_DETECTED,
-    CHECK_IN,
-    SLEEP
- };
-
 class DetectionTask: public Task {
     private:
+        enum DetectionTaskStates { 
+            CAR_NOT_DETECTED,
+            CAR_DETECTED,
+            CHECK_IN,
+            SLEEP
+        };
         DetectionTaskStates state;
         unsigned long tCarDetected;
-        unsigned long tStart;
+        unsigned long tStart;        
     public:
         DetectionTask(int period, CarWash *carWash);
         void tick();
