@@ -16,8 +16,9 @@ void setup()
     sched.init(100);
 
     carWash = new CarWash();
-    accessTask = new TempCheckTask(100, carWash);
-    // sched.addTask(accessTask);
+    accessTask = new TempCheckTask(1000, carWash);
+    accessTask->setName("AccessTask");
+    accessTask->setActive(true);
 
     detectMotionTask = new DetectionTask(100, carWash);
     detectMotionTask->setName("DetectionTask");
@@ -27,6 +28,8 @@ void setup()
     communicationTask->setName("StateTask");
     communicationTask->setActive(true);
 
+
+    sched.addTask(accessTask);
     sched.addTask(detectMotionTask);
     sched.addTask(communicationTask);
 }

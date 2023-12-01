@@ -13,11 +13,13 @@ AccessTask::AccessTask(int period, CarWash *carWash) : Task(period, carWash) {
 void AccessTask::tick() {
     switch (state) {
         case CLOSE:
-            carWash->getServoMotor()->setPosition(0);
+            carWash->getServoMotor()->setPosition(0); 
+            state = OPEN;
             break;
 
         case OPEN:
             carWash->getServoMotor()->setPosition(90);
+            state = CLOSE;
             break;
 
         default:

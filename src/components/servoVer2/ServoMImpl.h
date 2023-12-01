@@ -5,9 +5,11 @@
 
 class ServoMImpl : public ServoM {
     private:
+        Servo servo;
+        int angle;
     public:
         ServoMImpl(unsigned short pin);
-        void setPosition(int angle);
+        void setPosition(int _angle);
         void incOneGrade();
         void decOneGrade();
         int getAngle();
