@@ -18,3 +18,17 @@ void Led::fading() {
     Serial.println(currentLight);
     analogWrite(this->pins[0].getPinNumber(), currentLight);
 }
+
+void Led::blink(unsigned long time) {
+    if (millis() - this->lastBlink >= time)
+    {
+        if (this->isOn())
+        {
+            this->switchLight(false);
+        } else {
+            this->switchLight(true);
+        }
+        this->lastBlink = millis();
+    }
+    
+}
