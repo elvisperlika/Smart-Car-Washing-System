@@ -7,7 +7,7 @@ CarWash::CarWash() {
     temperatureSensor = new TempSensorTMP36(TMP36_PIN);
     proximitySensor = new HCSR501(MOTION_SENSOR_PIN);
     distanceSensor = new Sonar(DISTANCE_SENSOR_ECHO_PIN, DISTANCE_SENSOR_TRIG_PIN, MAX_DISTANCE_TIME);
-    servoMotor = new ServoMotorImpl(GATE_PIN);
+    servoMotor = new ServoMImpl(GATE_PIN);
     lcd = new LcdI2C();
     button = new ButtonImpl(BUTTON_PIN);
     
@@ -43,7 +43,7 @@ bool CarWash::isButtonPressed() {
     return button->isClicked();
 }
 
-ServoMotor *CarWash::getServoMotor() {
+ServoM *CarWash::getServoMotor() {
     return servoMotor;
 }
 

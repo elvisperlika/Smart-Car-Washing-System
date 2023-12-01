@@ -8,7 +8,7 @@ void CommunicationTask::tick() {
     if (MsgService.isMsgAvailable()) {
         Msg* msg = MsgService.receiveMsg();    
         if (msg->getContent() == "1"){
-            carWash->errorTempratureFixed();
+            // carWash->errorTempratureFixed();
         }
         // NOT TO FORGET: message deallocation 
         delete msg;
@@ -16,7 +16,10 @@ void CommunicationTask::tick() {
         this->state = carWash->enumToString(carWash->getState());
     }
 
+    this->buffer = String(carWash->getTemperature(), 2);
+
     char dataOut[100];
-    sprintf(dataOut, "{\"temperature\": \"%d\", \"state\": \"%s\"}", carWash->getTemperature(), this->state.c_str());
+    sprintf(dataOut, "{\"temperature\": \"%s\", \"state\": \"%s\"}", buffer.begin(), this->state.c_str());
+    
     MsgService.sendMsg(dataOut);
 }

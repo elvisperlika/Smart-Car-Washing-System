@@ -4,23 +4,41 @@
 #define MAXDIST 20
 #define MINDIST 5
 
-extern int carDistance;
+int angle;
 
 AccessTask::AccessTask(int period, CarWash *carWash) : Task(period, carWash) {
-    state = CLOSE;
+    gateState = GATE_STATE::CLOSE;
+    angle = 180;
 }
 
 void AccessTask::tick() {
-    switch (state) {
-        case CLOSE:
-            carWash->getServoMotor()->setPosition(0);
+    Serial.println("gate Tick!");
+    Serial.println(angle);
+    Serial.println(gateState);
+    switch (gateState) {
+        case GATE_STATE::CLOSE:
+            gateState = GATE_STATE::OPENING;
             break;
-
-        case OPEN:
-            carWash->getServoMotor()->setPosition(90);
+        case GATE_STATE::OPENING:
+            angle -= 5;
+            this->carWash->getServoMotor()->setPosition(angle);
+            if (angle <= 70)
+            {
+                gateState = GATE_STATE::OPEN;
+            }
             break;
-
-        default:
+        case GATE_STATE::OPEN:
+            gateState = GATE_STATE::CLOSING;
             break;
+        case GATE_STATE::CLOSING:
+            angle += 5;
+            this->carWash->getServoMotor()->setPosition(angle);
+            if (angle >= 180)
+            {
+                gateState = GATE_STATE::CLOSE;
+            }
+            break;
+      
     }
+
 }

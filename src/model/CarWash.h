@@ -4,7 +4,7 @@
 #include "Config.h"
 #include "components/button/Button.h"
 #include "components/distantiometer/Sonar.h"
-#include "components/servo/ServoMotorImpl.h"
+#include "components/servoVer2/ServoMImpl.h"
 #include "components/lcd/Lcd.h"
 #include "components/lcd/LcdI2C.h"
 #include "components/light/Led.h"
@@ -33,7 +33,7 @@ class CarWash {
         TempSensor *temperatureSensor;
         ProximitySensor *proximitySensor;
         DistanceSensor *distanceSensor;
-        ServoMotor *servoMotor;
+        ServoM *servoMotor;
         Lcd *lcd;
         Button *button;
 
@@ -61,7 +61,7 @@ class CarWash {
         float getTemperature();
         int getDistance();
         bool isButtonPressed();
-        ServoMotor *getServoMotor();
+        ServoM *getServoMotor();
         Lcd *getLcd();
         SystemState getState();
         void setState(SystemState newState);
