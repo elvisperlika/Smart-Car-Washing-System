@@ -73,5 +73,7 @@ const char* CarWash::enumToString(enum SystemState value) {
 }
 
 void CarWash::errorTempratureFixed() {
-    setSuspended(false);
+    if (systemState == SystemState::WASHING_ERROR) {
+        systemState = SystemState::WASHING;
+    }
 }
