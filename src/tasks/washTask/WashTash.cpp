@@ -1,60 +1,42 @@
 #include "WashTask.h"
 
 WashTask::WashTask(int period, CarWash *carWash) : Task(period, carWash) {
-    taskState = TaskState::OFFLINE;
+    state = WashTaskStates::OFFLINE;
 }
 
 void WashTask::tick() {
-    switch (taskState)
+    switch (state)
     {
-        case OFFLINE:
-            carWash->getLed2()->switchLight(true);
-
-            if (carWash->getState() == SystemState::READY_TO_BE_WASHED_BUTTON_PRESSED) {                
-                taskState = TaskState::WASHING;
+        case WashTaskStates::OFFLINE:
+            if (carWash->getState() == SystemState::READY_TO_BE_WASHED_BUTTON_PRESSED) {
+                state = WashTaskStates::WASHING;
                 washingTime = millis();
                 suspendedTime = 0;
             }
             break;
             
-        case WASHING:
+        case WashTaskStates::WASHING:
             if (millis() - washingTime - (millis() - suspendedTime) < T3) {
                 carWash->setState(SystemState::CHECK_OUT);
+                state = WashTaskStates::CAR_EXIT;
                 break;
             }
 
-            if (carWash->getTemperature() >= MAX_TEMPERATURE) {
-                taskState = TaskState::TEMPERATURE_WARNING;
-                warningTime = millis();
-            }
-
-            break;
-                
-        case TEMPERATURE_WARNING:
-            if (millis() - washingTime - (millis() - suspendedTime) < T3) {
-                carWash->setState(SystemState::CHECK_OUT);
-                break;
-            }
-
-            if (carWash->getTemperature() < MAX_TEMPERATURE) {
-                taskState = TaskState::WASHING;
-            }
-
-            if (millis() - warningTime < T4) {
-                taskState = TaskState::SUSPENDED;
-                carWash->setSuspended(true);
-                suspendedTime = millis();
-            }
-
-            break;
-                
-        case SUSPENDED:
-            if (!carWash->isSuspended()) {
-                taskState = TaskState::WASHING;
+            if (carWash->getState() == SystemState::WASHING_ERROR) {
+                state = WashTaskStates::SUSPENDED;
             }
             break;
                 
-        default:
+        case WashTaskStates::SUSPENDED:
+            if (carWash->getState() == SystemState::WASHING) {
+                state = WashTaskStates::WASHING;
+            }
+            break;
+        
+        case WashTaskStates::CAR_EXIT:
+            if (carWash->getState() == SystemState::DETECTION) {
+                state = WashTaskStates::OFFLINE;
+            }
             break;
     }
 }
