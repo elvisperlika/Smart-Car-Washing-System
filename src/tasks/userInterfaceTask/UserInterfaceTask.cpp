@@ -46,7 +46,7 @@ void UserInterfaceTask::tick() {
             break;
         case UserInterfaceState::WASHING_:
             carWash->getLed2()->blink(500l);
-            buffer = String(T3 - carWash->getGlobalWasingTime(), 0);
+            buffer = String(T3 - carWash->getGlobalWashingTime(), 0);
             carWash->getLcd()->displayText(buffer.begin());
             if (carWash->getState() == SystemState::WASHING_ERROR)
             {

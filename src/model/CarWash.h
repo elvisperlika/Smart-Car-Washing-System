@@ -36,10 +36,10 @@ class CarWash {
         ServoM *servoMotor;
         Lcd *lcd;
         Button *button;
-        int globalWasingTime;
 
         SystemState systemState;
         bool suspended;
+        unsigned long globalWashingTime;
         const char* enumStrings[9] = {
             "DETECTION",
             "WELCOME",
@@ -70,9 +70,8 @@ class CarWash {
         void setSuspended(bool newState);
         const char* enumToString(enum SystemState value);
         void errorTempratureFixed();
-        int getGlobalWasingTime();
-        void setGlobalWasingTime(int newTime);
-
+        unsigned long getGlobalWashingTime();
+        void setGlobalWashingTime(unsigned long newTime);
 };
 
 #endif
