@@ -1,7 +1,6 @@
 #include "DetectionTask.h"
 
 DetectionTask::DetectionTask(int period, CarWash *carWash) : Task(period, carWash) {
-    carWash->setState(SystemState::DETECTION);
     state = CAR_NOT_DETECTED;
     tStart = millis();
 }
@@ -9,42 +8,47 @@ DetectionTask::DetectionTask(int period, CarWash *carWash) : Task(period, carWas
 void DetectionTask::tick() {
     switch (state)
     {
-        case CAR_NOT_DETECTED:
+        case DetectionTaskStates::CAR_NOT_DETECTED:
             if (carWash->getPresence()) {
+                state = DetectionTaskStates::CAR_DETECTED;
+                carWash->setState(SystemState::WELCOME);
                 tCarDetected = millis();
-                carWash->getLed1()->switchLight(true);
-                state = CAR_DETECTED;
             }
 
             if (millis() - tStart >= T0) {
-                state = SLEEP;
+                state = DetectionTaskStates::SLEEP;
+                carWash->setSuspended(true);
             }
             break;
         
-        case CAR_DETECTED:
+        case DetectionTaskStates::CAR_DETECTED:
             if (millis() - tCarDetected >= T1) {
-                state = CHECK_IN;
-                carWash->getLcd()->displayText("Proceed to the washing area!");
+                state = DetectionTaskStates::CHECK_IN;
+                carWash->setState(SystemState::CHECK_IN);
             }
             break;
 
-        case CHECK_IN:
-            if (carWash->getDistance() > MAX_DISTANCE) {
-                state = CAR_NOT_DETECTED;
+        case DetectionTaskStates::CHECK_IN:
+            if (carWash->getState() == SystemState::READY_TO_BE_WASHED) {
+                state = DetectionTaskStates::OFF;
             }
+            
+            if (carWash->getState() == SystemState::DETECTION) {
+                state = DetectionTaskStates::CAR_NOT_DETECTED;
+            }
+            break;
 
+        case DetectionTaskStates::OFF:
+            if (carWash->getState() == SystemState::DETECTION) {
+                state = DetectionTaskStates::CAR_NOT_DETECTED;
+            }
             break;
         
-        case SLEEP:
-            carWash->setSuspended(true);
-            carWash->getLed1()->switchLight(false);
+        case DetectionTaskStates::SLEEP:
             if (carWash->getState() == SystemState::DETECTION) {
                 tCarDetected = millis();
-                state = CAR_DETECTED;
+                state = DetectionTaskStates::CAR_DETECTED;
             }
-            break;
-        
-        default:        
             break;
     }
 }

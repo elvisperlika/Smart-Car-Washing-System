@@ -1,34 +1,37 @@
 #include "TempCheckTask.h"
 
 TempCheckTask::TempCheckTask(int period, CarWash *carWash) : Task(period, carWash) { 
-    state = T_NORM;
+    state = OFFLINE;
 }
 
 void TempCheckTask::tick() {
-    float temp = carWash->getTemperature();
-    
-    if(carWash->getState() == SystemState::CAR_WASHING) {
-        switch (state) {
-            case T_NORM:
-                if (temp > MAX_TEMPERATURE) {
-                    tHighTemp = millis();
-                    state = HIGH_TEMP;
-                }
-                break;
-            case HIGH_TEMP:
-                if(temp <= MAX_TEMPERATURE){
-                    state = T_NORM;
-                }
-                if (millis() - tHighTemp >= MAX_TEMPERATURE_TIME) {
-                    state = ALERT;
-                    carWash->setState(SystemState::CAR_WASHING_ERROR);
-                }
-                break;
-            case ALERT:
-                if (!carWash->isSuspended()) {
-                    state = T_NORM;
-                }
-                break;
-        }
+    switch (state) {
+        case OFFLINE:
+            if (carWash->getState() == SystemState::WASHING) {
+                state = NORMAL_TEMP;
+            }
+            break;
+        case NORMAL_TEMP:
+            if (carWash->getTemperature() >= MAX_TEMPERATURE) {
+                tHighTemp = millis();
+                state = HIGH_TEMP;
+            }
+            break;
+        case HIGH_TEMP:
+            if (carWash->getTemperature() < MAX_TEMPERATURE) {
+                state = NORMAL_TEMP;
+            }
+
+            if (millis() - tHighTemp >= T4) {
+                state = ALERT;
+                carWash->setState(SystemState::WASHING_ERROR);
+            }
+            break;
+        case ALERT:
+            if (carWash->getState() == SystemState::WASHING) {
+                state = NORMAL_TEMP;
+                carWash->setState(SystemState::WASHING);
+            }
+            break;
     }
 }

@@ -6,9 +6,14 @@
 #include <Arduino.h>
 
 class TempCheckTask: public Task {
-    enum { T_NORM, HIGH_TEMP, ALERT } state;
+    enum TempCheckTaskStates {
+        OFFLINE,
+        NORMAL_TEMP,
+        HIGH_TEMP,
+        ALERT
+    };
+    TempCheckTaskStates state;
     uint8_t tHighTemp;
-    static uint8_t T_HIGH_TEMP;
     bool alert = false;
 
 public:

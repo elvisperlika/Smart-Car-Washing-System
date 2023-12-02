@@ -3,11 +3,16 @@
 
 #include "../Task.h"
 
-enum GATE_STATE { CLOSE, OPENING, OPEN, CLOSING };
-
 class AccessTask: public Task {
     private:
-        GATE_STATE gateState;
+        enum AccessTaskStates {
+            CLOSE,
+            OPENING,
+            OPEN,
+            CLOSING
+        };
+        AccessTaskStates gateState;
+        int angle;
     public:
         AccessTask(int period, CarWash *carWash);
         void tick();

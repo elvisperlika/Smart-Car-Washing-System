@@ -1,41 +1,42 @@
 #include "AccessTask.h"
-#include <Arduino.h>
-
-#define MAXDIST 20
-#define MINDIST 5
-
-int angle;
 
 AccessTask::AccessTask(int period, CarWash *carWash) : Task(period, carWash) {
-    gateState = GATE_STATE::CLOSE;
-    angle = 180;
+    gateState = AccessTaskStates::CLOSE;
+    angle = carWash->getServoMotor()->getDefaultCloseAngle();
+    carWash->getServoMotor()->setPosition(angle);
 }
 
 void AccessTask::tick() {
-    Serial.println("gate Tick!");
-    Serial.println(angle);
-    Serial.println(gateState);
     switch (gateState) {
-        case GATE_STATE::CLOSE:
-            gateState = GATE_STATE::OPENING;
-            break;
-        case GATE_STATE::OPENING:
-            angle -= 5;
-            this->carWash->getServoMotor()->setPosition(angle);
-            if (angle <= 70)
-            {
-                gateState = GATE_STATE::OPEN;
+        case AccessTaskStates::CLOSE:
+            if (carWash->getState() == SystemState::CHECK_IN || carWash->getState() == SystemState::CHECK_OUT) {
+                gateState = AccessTaskStates::OPENING;
             }
             break;
-        case GATE_STATE::OPEN:
-            gateState = GATE_STATE::CLOSING;
-            break;
-        case GATE_STATE::CLOSING:
-            angle += 5;
-            this->carWash->getServoMotor()->setPosition(angle);
-            if (angle >= 180)
+        case AccessTaskStates::OPENING:
+            angle -= SERVO_DEGREE_CHANGE;
+            carWash->getServoMotor()->setPosition(angle);
+
+            if (angle <= carWash->getServoMotor()->getDefaultOpenAngle())
             {
-                gateState = GATE_STATE::CLOSE;
+                angle = carWash->getServoMotor()->getDefaultOpenAngle();
+                carWash->getServoMotor()->setPosition(angle);
+                gateState = AccessTaskStates::OPEN;
+            }
+            break;
+        case AccessTaskStates::OPEN:
+            if (carWash->getState() == SystemState::VEICHLE_WAITING || carWash->getState() == SystemState::DETECTION) {
+                gateState = AccessTaskStates::CLOSING;
+            }            
+            break;
+        case AccessTaskStates::CLOSING:
+            angle += SERVO_DEGREE_CHANGE;
+            carWash->getServoMotor()->setPosition(angle);
+            if (angle >= carWash->getServoMotor()->getDefaultCloseAngle())
+            {
+                angle = carWash->getServoMotor()->getDefaultCloseAngle();
+                carWash->getServoMotor()->setPosition(angle);
+                gateState = AccessTaskStates::CLOSE;
             }
             break;
       

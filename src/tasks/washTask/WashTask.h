@@ -4,16 +4,15 @@
 #include "../Task.h"
 #include <Arduino.h>
 
-enum TaskState{
-    OFFLINE,
-    WASHING,
-    TEMPERATURE_WARNING,
-    SUSPENDED
-};
-
 class WashTask: public Task {
     private:
-        TaskState taskState;
+        enum WashTaskStates {
+            OFFLINE,
+            WASHING,            
+            SUSPENDED,
+            CAR_EXIT
+        };
+        WashTaskStates state;
         unsigned long washingTime;
         unsigned long warningTime;
         unsigned long suspendedTime;

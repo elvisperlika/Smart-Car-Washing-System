@@ -8,8 +8,7 @@ class Task {
 		CarWash *carWash;
 		int myPeriod;
 		int timeElapsed;
-		bool active;
-		String name;
+		const char* name;
 	
 	public:
 		Task(int period, CarWash *carWash);
@@ -18,13 +17,9 @@ class Task {
 
 		bool updateAndCheckTime(int basePeriod);
 
-		bool isActive();
+		const char* getName();
 
-		void setActive(bool active);
-
-		String getName();
-
-		void setName(String name);
+		void setName(const char* name);
   
 };
 

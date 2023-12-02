@@ -9,6 +9,7 @@ class DetectionTask: public Task {
             CAR_NOT_DETECTED,
             CAR_DETECTED,
             CHECK_IN,
+            OFF,
             SLEEP
         };
         DetectionTaskStates state;

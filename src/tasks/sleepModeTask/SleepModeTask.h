@@ -1,15 +1,12 @@
-#ifndef __SLEEPMODETASK__
-#define __SLEEPMODETASK__
+#ifndef __SLEEP_MODE_TASK_H__
+#define __SLEEP_MODE_TASK_H__
 
 #include "../Task.h"
 #include <avr/sleep.h>
-#include "Config.h"
 
 class SleepModeTask: public Task {
-    private: 
     public:
         SleepModeTask(int period, CarWash *carWash);
         void tick();
 };
-
 #endif

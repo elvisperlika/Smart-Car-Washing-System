@@ -17,7 +17,7 @@
 #define LCD_SCL_PIN A5
 
 // Timers
-#define T0 3000 //Sleep mode time
+#define T0 30000000 //Sleep mode time
 #define T1 3000 //Car on gate time
 #define T2 3000 //Car inside time
 #define T3 3000 //Washing time
@@ -27,8 +27,9 @@
 // Other Constants
 #define BAUD_RATE 9600
 #define MAX_DISTANCE_TIME 1000000l // microsecond time limit to wait for a distance sensor range
-#define MIN_DISTANCE 2
-#define MAX_DISTANCE 10
+#define MIN_DISTANCE 3
+#define MAX_DISTANCE 9
+#define SERVO_DEGREE_CHANGE 5
 #define MAX_TEMPERATURE 40
 #define MAX_TEMPERATURE_TIME 3000l
 

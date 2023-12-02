@@ -2,12 +2,12 @@
 
 bool flag = false;
 
-SleepModeTask::SleepModeTask(int period, CarWash *carWash) : Task(period, carWash) {}
-
 void wakeUpNow()
 {
     flag = true;
 }
+
+SleepModeTask::SleepModeTask(int period, CarWash *carWash) : Task(period, carWash) {}
 
 void SleepModeTask::tick()
 {
@@ -21,6 +21,7 @@ void SleepModeTask::tick()
         sleep_mode();
         sleep_disable();
     }
+
     if (flag)
     {
         carWash->setSuspended(false);

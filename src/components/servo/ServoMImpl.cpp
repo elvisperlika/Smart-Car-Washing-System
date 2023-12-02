@@ -24,3 +24,11 @@ bool ServoMImpl::isClose() {
 bool ServoMImpl::isOpen() {
     return angle == OPEN_GATE_DEGREE;
 }
+
+int ServoMImpl::getDefaultCloseAngle() {
+    return CLOSE_GATE_DEGREE;
+}
+
+int ServoMImpl::getDefaultOpenAngle() {
+    return OPEN_GATE_DEGREE;
+}

@@ -4,7 +4,6 @@ Task::Task(int period, CarWash *carWash) {
 	Task::carWash = carWash;
 	myPeriod = period;
 	timeElapsed = 0;
-	active = true;
 }
 
 bool Task::updateAndCheckTime(int basePeriod){
@@ -17,18 +16,10 @@ bool Task::updateAndCheckTime(int basePeriod){
 	}
 }
 
-bool Task::isActive(){
-    return active;
+const char* Task::getName() {
+	return name;
 }
 
-void Task::setActive(bool active){
-    this->active = active;
-}
-
-String Task::getName() {
-	return this->name;
-}
-
-void Task::setName(String name) {
+void Task::setName(const char* name) {
 	this->name = name;
 }

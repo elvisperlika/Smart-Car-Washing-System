@@ -2,6 +2,8 @@
 #define __SCHEDULER__
 
 #include "tasks/Task.h"
+#include "components/Timer.h"
+
 
 #define MAX_TASKS 20
 
