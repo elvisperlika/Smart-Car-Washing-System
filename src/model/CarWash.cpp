@@ -10,6 +10,7 @@ CarWash::CarWash() {
     servoMotor = new ServoMImpl(GATE_PIN);
     lcd = new LcdI2C();
     button = new ButtonImpl(BUTTON_PIN);
+    globalWasingTime = 0;
     
     systemState = SystemState::DETECTION;
     suspended = false;
@@ -76,4 +77,12 @@ void CarWash::errorTempratureFixed() {
     if (systemState == SystemState::WASHING_ERROR) {
         systemState = SystemState::WASHING;
     }
+}
+
+int CarWash::getGlobalWasingTime() {
+    return globalWasingTime;
+}
+
+void CarWash::setGlobalWasingTime(int newTime) {
+    globalWasingTime = newTime;
 }
