@@ -32,6 +32,10 @@ void DetectionTask::tick() {
             if (carWash->getState() == SystemState::READY_TO_BE_WASHED) {
                 state = DetectionTaskStates::OFF;
             }
+            
+            if (carWash->getState() == SystemState::DETECTION) {
+                state = DetectionTaskStates::CAR_NOT_DETECTED;
+            }
             break;
 
         case DetectionTaskStates::OFF:
