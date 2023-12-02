@@ -40,15 +40,15 @@ class CarWash {
         SystemState systemState;
         bool suspended;
         const char* enumStrings[9] = {
-            "SLEEP",
             "DETECTION",
             "WELCOME",
+            "CHECK_IN",
             "VEICHLE_WAITING",
             "READY_TO_BE_WASHED",
             "READY_TO_BE_WASHED_BUTTON_PRESSED",
-            "CAR_WASHING",
-            "CAR_WASHING_ERROR",
-            "VEICHLE_LEAVING"
+            "WASHING",
+            "WASHING_ERROR",
+            "CHECK_OUT"
         };
         
 
