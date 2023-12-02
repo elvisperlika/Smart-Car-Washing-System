@@ -10,15 +10,14 @@ void DetectionTask::tick() {
     {
         case DetectionTaskStates::CAR_NOT_DETECTED:
             if (carWash->getPresence()) {
-                tCarDetected = millis();
-                carWash->getLed1()->switchLight(true);
-                carWash->getLcd()->clearScreen();
-                carWash->getLcd()->displayText("Welcome");
                 state = DetectionTaskStates::CAR_DETECTED;
+                carWash->setState(SystemState::WELCOME);
+                tCarDetected = millis();
             }
 
             if (millis() - tStart >= T0) {
                 state = DetectionTaskStates::SLEEP;
+                carWash->setSuspended(true);
             }
             break;
         
@@ -26,30 +25,26 @@ void DetectionTask::tick() {
             if (millis() - tCarDetected >= T1) {
                 state = DetectionTaskStates::CHECK_IN;
                 carWash->setState(SystemState::CHECK_IN);
-                carWash->getLcd()->displayText("Proceed to the washing area!");
             }
             break;
 
         case DetectionTaskStates::CHECK_IN:
-
+            if (carWash->getState() == SystemState::READY_TO_BE_WASHED) {
+                state = DetectionTaskStates::OFF;
+            }
             break;
 
         case DetectionTaskStates::OFF:
             if (carWash->getState() == SystemState::DETECTION) {
                 state = DetectionTaskStates::CAR_NOT_DETECTED;
-                carWash->getLed1()->switchLight(false);
             }
             break;
         
         case DetectionTaskStates::SLEEP:
-            carWash->setSuspended(true);
             if (carWash->getState() == SystemState::DETECTION) {
                 tCarDetected = millis();
                 state = DetectionTaskStates::CAR_DETECTED;
             }
-            break;
-        
-        default:        
             break;
     }
 }
