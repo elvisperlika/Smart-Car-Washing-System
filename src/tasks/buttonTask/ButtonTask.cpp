@@ -14,7 +14,7 @@ void ButtonTask::tick() {
             break;
         case ButtonTaskStates::BUTTON_PRESSED:
             if (!carWash->isButtonPressed()) {
-                carWash->setState(SystemState::READY_TO_BE_WASHED_BUTTON_PRESSED);
+                carWash->setState(SystemState::WASHING);
                 state = ButtonTaskStates::OFFLINE;
             }
             break;

@@ -8,7 +8,7 @@ void WashTask::tick() {
     switch (state)
     {
         case WashTaskStates::OFFLINE:
-            if (carWash->getState() == SystemState::READY_TO_BE_WASHED_BUTTON_PRESSED) {
+            if (carWash->getState() == SystemState::WASHING) {
                 state = WashTaskStates::WASHING;
                 washingTime = millis();
                 suspendedTime = 0;

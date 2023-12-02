@@ -1,7 +1,7 @@
 #include "DetectionTask.h"
 
 DetectionTask::DetectionTask(int period, CarWash *carWash) : Task(period, carWash) {
-    state = CAR_NOT_DETECTED;
+    state = DetectionTaskStates::CAR_NOT_DETECTED;
     tStart = millis();
 }
 

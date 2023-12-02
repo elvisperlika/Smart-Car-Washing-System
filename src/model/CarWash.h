@@ -19,7 +19,6 @@ enum SystemState {
     CHECK_IN,
     VEICHLE_WAITING,
     READY_TO_BE_WASHED,
-    READY_TO_BE_WASHED_BUTTON_PRESSED,
     WASHING,
     WASHING_ERROR,
     CHECK_OUT
@@ -46,7 +45,6 @@ class CarWash {
             "CHECK_IN",
             "VEICHLE_WAITING",
             "READY_TO_BE_WASHED",
-            "READY_TO_BE_WASHED_BUTTON_PRESSED",
             "WASHING",
             "WASHING_ERROR",
             "CHECK_OUT"
