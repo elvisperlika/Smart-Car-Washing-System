@@ -16,6 +16,8 @@ class ServoMImpl : public ServoM {
         void setPosition(int _angle);
         bool isClose();
         bool isOpen();
+        int getDefaultCloseAngle();
+        int getDefaultOpenAngle();
 };
 
 #endif
