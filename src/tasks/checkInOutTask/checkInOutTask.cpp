@@ -57,3 +57,7 @@ void CheckInOutTask::tick() {
             break;
     }
 }
+
+int CheckInOutTask::getState() {
+    return state;
+}

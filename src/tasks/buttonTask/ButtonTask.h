@@ -14,6 +14,7 @@ class ButtonTask : public Task {
     public:
         ButtonTask(int period, CarWash *carWash);
         void tick();
+        int getState();
 };
 
 #endif

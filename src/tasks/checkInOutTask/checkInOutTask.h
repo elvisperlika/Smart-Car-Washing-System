@@ -20,6 +20,7 @@ class CheckInOutTask : public Task {
     public:
         CheckInOutTask(int period, CarWash *carWash);
         void tick();
+        int getState();
 };
 
 #endif

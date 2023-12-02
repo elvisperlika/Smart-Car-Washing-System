@@ -1,9 +1,6 @@
 #ifndef SERVOIMPL_H
 #define SERVOIMPL_H
 
-#define CLOSE_GATE_DEGREE 180
-#define OPEN_GATE_DEGREE 70
-
 #include "ServoM.h"
 #include <ServoTimer2.h>
 
@@ -11,6 +8,8 @@ class ServoMImpl : public ServoM {
     private:
         ServoTimer2 servo;
         int angle;
+        const int CLOSE_GATE_DEGREE = 180;
+        const int OPEN_GATE_DEGREE = 70;
     public:
         ServoMImpl(unsigned short pin);
         void setPosition(int _angle);

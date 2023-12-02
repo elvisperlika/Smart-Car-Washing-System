@@ -17,10 +17,8 @@ void AccessTask::tick() {
             angle -= SERVO_DEGREE_CHANGE;
             carWash->getServoMotor()->setPosition(angle);
 
-            if (angle <= carWash->getServoMotor()->getDefaultOpenAngle())
+            if (carWash->getServoMotor()->isOpen())
             {
-                angle = carWash->getServoMotor()->getDefaultOpenAngle();
-                carWash->getServoMotor()->setPosition(angle);
                 gateState = AccessTaskStates::OPEN;
             }
             break;
@@ -32,14 +30,16 @@ void AccessTask::tick() {
         case AccessTaskStates::CLOSING:
             angle += SERVO_DEGREE_CHANGE;
             carWash->getServoMotor()->setPosition(angle);
-            if (angle >= carWash->getServoMotor()->getDefaultCloseAngle())
+            if (carWash->getServoMotor()->isClose())
             {
-                angle = carWash->getServoMotor()->getDefaultCloseAngle();
-                carWash->getServoMotor()->setPosition(angle);
                 gateState = AccessTaskStates::CLOSE;
             }
             break;
       
     }
 
+}
+
+int AccessTask::getState() {
+    return gateState;
 }

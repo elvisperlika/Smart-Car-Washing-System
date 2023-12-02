@@ -35,3 +35,7 @@ void TempCheckTask::tick() {
             break;
     }
 }
+
+int TempCheckTask::getState() {
+    return state;
+}

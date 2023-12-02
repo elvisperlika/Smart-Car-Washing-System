@@ -18,6 +18,7 @@ class DetectionTask: public Task {
     public:
         DetectionTask(int period, CarWash *carWash);
         void tick();
+        int getState();
 };
 
 #endif

@@ -19,6 +19,7 @@ class WashTask: public Task {
     public:
         WashTask(int period, CarWash *carWash);
         void tick();
+        int getState();
 };
 
 #endif

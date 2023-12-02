@@ -28,3 +28,8 @@ void SleepModeTask::tick()
         flag = false;
     }
 }
+
+int SleepModeTask::getState()
+{
+    return 0;
+}

@@ -15,6 +15,8 @@ class Task {
 
 		virtual void tick() = 0;
 
+		virtual int getState() = 0;
+
 		bool updateAndCheckTime(int basePeriod);
 
 		const char* getName();

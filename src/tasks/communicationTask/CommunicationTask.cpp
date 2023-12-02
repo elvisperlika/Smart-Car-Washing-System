@@ -22,3 +22,7 @@ void CommunicationTask::tick() {
     
     MsgService.sendMsg(dataOut);
 }
+
+int CommunicationTask::getState() {
+    return -1;
+}

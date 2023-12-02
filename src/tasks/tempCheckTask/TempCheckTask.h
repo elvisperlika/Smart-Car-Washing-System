@@ -6,19 +6,21 @@
 #include <Arduino.h>
 
 class TempCheckTask: public Task {
-    enum TempCheckTaskStates {
-        OFFLINE,
-        NORMAL_TEMP,
-        HIGH_TEMP,
-        ALERT
-    };
-    TempCheckTaskStates state;
-    uint8_t tHighTemp;
-    bool alert = false;
+    private:
+        enum TempCheckTaskStates {
+            OFFLINE,
+            NORMAL_TEMP,
+            HIGH_TEMP,
+            ALERT
+        };
+        TempCheckTaskStates state;
+        uint8_t tHighTemp;
+        bool alert = false;
 
-public:
-    TempCheckTask(int period, CarWash *carWash);
-    void tick();
+    public:
+        TempCheckTask(int period, CarWash *carWash);
+        void tick();
+        int getState();
 };
 
 #endif
