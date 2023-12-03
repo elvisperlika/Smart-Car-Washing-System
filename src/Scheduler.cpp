@@ -10,7 +10,6 @@ void Scheduler::init(int basePeriod){
 }
 
 bool Scheduler::addTask(Task* task){
-    delay(500);
     if (nTasks < MAX_TASKS-1){
         this->taskList[nTasks] = task;
         this->nTasks++;
@@ -25,7 +24,6 @@ void Scheduler::schedule(){
 
     for (int i = 0; i < nTasks; i++){
         if (taskList[i]->updateAndCheckTime(basePeriod)){
-            Serial.println(taskList[i]->getName());
             taskList[i]->tick();
         }
     }

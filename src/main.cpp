@@ -8,6 +8,7 @@
 #include "tasks/washTask/WashTask.h"
 #include "tasks/tempCheckTask/TempCheckTask.h"
 #include "tasks/communicationTask/CommunicationTask.h"
+#include "tasks/userInterfaceTask/UserInterfaceTask.h"
 
 Scheduler sched;
 CarWash *carWash;
@@ -35,22 +36,32 @@ void setup()
     tempCheckTask->setName("TempCheckTask");
     Task *communicationTask = new CommunicationTask(100, carWash);
     communicationTask->setName("CommunicationTask");
+    Task *userInterfaceTask = new UserInterfaceTask(100, carWash);
+    userInterfaceTask->setName("UserInterfaceTask");
     
     sched.addTask(detectTask);
     sched.addTask(accessTask);
     sched.addTask(sleepTask);
     sched.addTask(checkInOutTask);
-    /*sched.addTask(buttonTask);
+    sched.addTask(buttonTask);
     sched.addTask(washTask);
     sched.addTask(tempCheckTask);
-    sched.addTask(communicationTask);    */
+    sched.addTask(communicationTask);
+    sched.addTask(userInterfaceTask);
+    Serial.println("adfadsafsasdfsafadsvs");
 }
 
 void loop()
 {
-    Serial.println("PRESTATE:");
-    Serial.println(carWash->getState());
+    /*Serial.println("PRESTATE:");
+    Serial.println(carWash->getState());*/
     sched.schedule();
-    Serial.println("POSTSTATE:");
-    Serial.println(carWash->getState());
+    Serial.print("Distance: ");
+    Serial.println(carWash->getDistance());
+    Serial.print("Presence: ");    
+    Serial.println(carWash->getPresence());
+    Serial.println(carWash->enumToString(carWash->getState()));
+    carWash->getLcd()->displayText(carWash->enumToString(carWash->getState()));
+    /*Serial.println("POSTSTATE:");
+    Serial.println(carWash->getState());*/
 }

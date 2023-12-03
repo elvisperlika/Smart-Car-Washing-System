@@ -19,7 +19,6 @@ enum SystemState {
     CHECK_IN,
     VEICHLE_WAITING,
     READY_TO_BE_WASHED,
-    READY_TO_BE_WASHED_BUTTON_PRESSED,
     WASHING,
     WASHING_ERROR,
     CHECK_OUT
@@ -36,17 +35,16 @@ class CarWash {
         ServoM *servoMotor;
         Lcd *lcd;
         Button *button;
-        int globalWasingTime;
 
         SystemState systemState;
         bool suspended;
+        unsigned long globalWashingTime;
         const char* enumStrings[9] = {
             "DETECTION",
             "WELCOME",
             "CHECK_IN",
             "VEICHLE_WAITING",
             "READY_TO_BE_WASHED",
-            "READY_TO_BE_WASHED_BUTTON_PRESSED",
             "WASHING",
             "WASHING_ERROR",
             "CHECK_OUT"
@@ -70,9 +68,8 @@ class CarWash {
         void setSuspended(bool newState);
         const char* enumToString(enum SystemState value);
         void errorTempratureFixed();
-        int getGlobalWasingTime();
-        void setGlobalWasingTime(int newTime);
-
+        unsigned long getGlobalWashingTime();
+        void setGlobalWashingTime(unsigned long newTime);
 };
 
 #endif

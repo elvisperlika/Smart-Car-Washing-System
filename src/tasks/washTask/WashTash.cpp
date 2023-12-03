@@ -8,7 +8,7 @@ void WashTask::tick() {
     switch (state)
     {
         case WashTaskStates::OFFLINE:
-            if (carWash->getState() == SystemState::READY_TO_BE_WASHED_BUTTON_PRESSED) {
+            if (carWash->getState() == SystemState::WASHING) {
                 state = WashTaskStates::WASHING;
                 washingTime = millis();
                 suspendedTime = 0;
@@ -18,7 +18,7 @@ void WashTask::tick() {
         case WashTaskStates::WASHING:
             if (millis() - washingTime >= 1000l)
             {
-                carWash->setGlobalWasingTime(carWash->getGlobalWasingTime() + 1);
+                carWash->setGlobalWashingTime(carWash->getGlobalWashingTime() + 1);
             }
             
             if (millis() - washingTime - (millis() - suspendedTime) < T3) {
@@ -41,7 +41,7 @@ void WashTask::tick() {
         case WashTaskStates::CAR_EXIT:
             if (carWash->getState() == SystemState::DETECTION) {
                 state = WashTaskStates::OFFLINE;
-                carWash->setGlobalWasingTime(0);
+                carWash->setGlobalWashingTime(0);
             }
             break;
     }

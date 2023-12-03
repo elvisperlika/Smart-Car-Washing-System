@@ -1,82 +1,88 @@
-#include "tasks/userInterfaceTask/UserInterfaceTask.h"
+#include "UserInterfaceTask.h"
 
 UserInterfaceTask::UserInterfaceTask(int period, CarWash *carWash): Task(period, carWash) {
-    this->UIState = UserInterfaceState::DETECTION_;
+    state = UserInterfaceTaskStates::DETECTION_;
 }
 
 void UserInterfaceTask::tick() {
-    switch (UIState) {
-        case UserInterfaceState::DETECTION_:
+    switch (state) {
+        case UserInterfaceTaskStates::DETECTION_:
+            Serial.println("DETECTION SUMMONER");
             carWash->getLed1()->switchLight(false);
             carWash->getLed2()->switchLight(false);
             carWash->getLed3()->switchLight(false);
             if (carWash->getState() == SystemState::WELCOME)
             {
+                Serial.println("WELCOME SUMMONER");
                 carWash->getLed1()->switchLight(true);
                 carWash->getLcd()->clearScreen();
                 carWash->getLcd()->displayText("Welcome!");
-                UIState = WELCOME_;
+                state = UserInterfaceTaskStates::WELCOME_;
             }
             break;
-        case UserInterfaceState::WELCOME_:
+
+        case UserInterfaceTaskStates::WELCOME_:
             if (carWash->getState() == SystemState::VEICHLE_WAITING)
             {
                 carWash->getLcd()->clearScreen();
                 carWash->getLcd()->displayText("Proceed to the Washing Area!");
-            } else if(carWash->getState() == SystemState::DETECTION) {
-                UIState = DETECTION_;
+            } else if (carWash->getState() == SystemState::DETECTION) {
+                state = UserInterfaceTaskStates::DETECTION_;
             }
             break;
-        case UserInterfaceState::CHECK_IN_:
+
+        case UserInterfaceTaskStates::CHECK_IN_:
             carWash->getLed2()->blink(100l);
             if (carWash->getState() == SystemState::VEICHLE_WAITING)
             {
                 carWash->getLcd()->clearScreen();
                 carWash->getLcd()->displayText("Ready to Wash!");
                 carWash->getLed2()->switchLight(true);
-                UIState = VEICHLE_WAITING_;
+                state = UserInterfaceTaskStates::VEICHLE_WAITING_;
             }
             break;
-        case UserInterfaceState::VEICHLE_WAITING_:
+
+        case UserInterfaceTaskStates::VEICHLE_WAITING_:
             if (carWash->getState() == SystemState::WASHING)
             {
-                UIState = WASHING_;
+                state = UserInterfaceTaskStates::WASHING_;
                 carWash->getLcd()->clearScreen();
             }
             break;
-        case UserInterfaceState::WASHING_:
+
+        case UserInterfaceTaskStates::WASHING_:
             carWash->getLed2()->blink(500l);
-            buffer = String(T3 - carWash->getGlobalWasingTime(), 0);
+            buffer = String(T3 - carWash->getGlobalWashingTime(), 0);
             carWash->getLcd()->displayText(buffer.begin());
             if (carWash->getState() == SystemState::WASHING_ERROR)
             {
-                UIState = WASHING_ERROR_;
+                state = UserInterfaceTaskStates::WASHING_ERROR_;
                 carWash->getLcd()->clearScreen();
                 carWash->getLcd()->displayText("Detected a Problem - Please Wait!");
             } else if (carWash->getState() == SystemState::CHECK_OUT) {
-                UIState = CHECK_OUT_;
+                state = UserInterfaceTaskStates::CHECK_OUT_;
                 carWash->getLed2()->switchLight(false);
                 carWash->getLed3()->switchLight(true);
                 carWash->getLcd()->clearScreen();
                 carWash->getLcd()->displayText("Washing complete, you can leave the area!");
             }
             break;
-        case UserInterfaceState::WASHING_ERROR_:
+
+        case UserInterfaceTaskStates::WASHING_ERROR_:
             if (carWash->getState() == SystemState::WASHING)
             {
-                UIState = WASHING_;
+                state = UserInterfaceTaskStates::WASHING_;
                 carWash->getLcd()->clearScreen();
             }
             break;
-        case UserInterfaceState::CHECK_OUT_:
+
+        case UserInterfaceTaskStates::CHECK_OUT_:
             if (carWash->getState() == SystemState::DETECTION)
             {
-                UIState = DETECTION_;
+                state = UserInterfaceTaskStates::DETECTION_;
                 carWash->getLed3()->switchLight(false);
                 carWash->getLcd()->clearScreen();
             }
-            break;
-        default:
             break;
     }
 }

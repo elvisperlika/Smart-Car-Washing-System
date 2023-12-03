@@ -10,10 +10,10 @@ CarWash::CarWash() {
     servoMotor = new ServoMImpl(GATE_PIN);
     lcd = new LcdI2C();
     button = new ButtonImpl(BUTTON_PIN);
-    globalWasingTime = 0;
     
     systemState = SystemState::DETECTION;
     suspended = false;
+    globalWashingTime = 0;
 }
 
 Led *CarWash::getLed1() {
@@ -79,10 +79,10 @@ void CarWash::errorTempratureFixed() {
     }
 }
 
-int CarWash::getGlobalWasingTime() {
-    return globalWasingTime;
+unsigned long CarWash::getGlobalWashingTime() {
+    return globalWashingTime;
 }
 
-void CarWash::setGlobalWasingTime(int newTime) {
-    globalWasingTime = newTime;
+void CarWash::setGlobalWashingTime(unsigned long newTime) {
+    globalWashingTime = newTime;
 }
