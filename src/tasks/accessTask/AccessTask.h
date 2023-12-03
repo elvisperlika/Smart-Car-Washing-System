@@ -12,7 +12,6 @@ class AccessTask: public Task {
             CLOSING
         };
         AccessTaskStates gateState;
-        int angle;
     public:
         AccessTask(int period, CarWash *carWash);
         void tick();

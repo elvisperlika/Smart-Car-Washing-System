@@ -7,13 +7,11 @@ UserInterfaceTask::UserInterfaceTask(int period, CarWash *carWash): Task(period,
 void UserInterfaceTask::tick() {
     switch (state) {
         case UserInterfaceTaskStates::DETECTION_:
-            Serial.println("DETECTION SUMMONER");
             carWash->getLed1()->switchLight(false);
             carWash->getLed2()->switchLight(false);
             carWash->getLed3()->switchLight(false);
             if (carWash->getState() == SystemState::WELCOME)
             {
-                Serial.println("WELCOME SUMMONER");
                 carWash->getLed1()->switchLight(true);
                 carWash->getLcd()->clearScreen();
                 carWash->getLcd()->displayText("Welcome!");
@@ -22,10 +20,11 @@ void UserInterfaceTask::tick() {
             break;
 
         case UserInterfaceTaskStates::WELCOME_:
-            if (carWash->getState() == SystemState::VEICHLE_WAITING)
+            if (carWash->getState() == SystemState::CHECK_IN)
             {
                 carWash->getLcd()->clearScreen();
                 carWash->getLcd()->displayText("Proceed to the Washing Area!");
+                state = UserInterfaceTaskStates::CHECK_IN_;
             } else if (carWash->getState() == SystemState::DETECTION) {
                 state = UserInterfaceTaskStates::DETECTION_;
             }
