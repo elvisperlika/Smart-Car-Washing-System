@@ -9,13 +9,19 @@
 #include "tasks/tempCheckTask/TempCheckTask.h"
 #include "tasks/communicationTask/CommunicationTask.h"
 #include "tasks/userInterfaceTask/UserInterfaceTask.h"
+#include <EnableInterrupt.h>
 
 Scheduler sched;
 CarWash *carWash;
 
+void unsleep() {
+    carWash->setSuspended(false);
+}
+
 void setup()
 {
     Serial.begin(BAUD_RATE);
+    
     carWash = new CarWash();
 
     sched.init(100);
@@ -46,22 +52,28 @@ void setup()
     sched.addTask(buttonTask);
     sched.addTask(washTask);
     sched.addTask(tempCheckTask);
-    sched.addTask(communicationTask);
+    //sched.addTask(communicationTask);
     sched.addTask(userInterfaceTask);
-    Serial.println("adfadsafsasdfsafadsvs");
+
+    enableInterrupt(MOTION_SENSOR_PIN, unsleep, RISING);
 }
 
 void loop()
 {
     /*Serial.println("PRESTATE:");
     Serial.println(carWash->getState());*/
+    delay(200);
     sched.schedule();
     Serial.print("Distance: ");
     Serial.println(carWash->getDistance());
-    Serial.print("Presence: ");    
+    Serial.print("Presence: ");
     Serial.println(carWash->getPresence());
+    Serial.print("Button: ");
+    Serial.println(carWash->isButtonPressed());
+    Serial.print("Gate: ");
+    Serial.println(carWash->getServoMotor()->isClose() ? "CLOSE" : "OPEN");
+    Serial.print("State: ");
     Serial.println(carWash->enumToString(carWash->getState()));
-    carWash->getLcd()->displayText(carWash->enumToString(carWash->getState()));
     /*Serial.println("POSTSTATE:");
     Serial.println(carWash->getState());*/
 }

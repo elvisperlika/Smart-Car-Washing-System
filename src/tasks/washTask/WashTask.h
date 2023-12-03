@@ -15,7 +15,8 @@ class WashTask: public Task {
         WashTaskStates state;
         unsigned long washingTime;
         unsigned long warningTime;
-        unsigned long suspendedTime;
+        unsigned long startSuspendedTime;
+        unsigned long totalSuspendedTime;
     public:
         WashTask(int period, CarWash *carWash);
         void tick();

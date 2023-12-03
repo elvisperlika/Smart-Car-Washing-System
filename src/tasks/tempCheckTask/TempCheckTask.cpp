@@ -12,12 +12,20 @@ void TempCheckTask::tick() {
             }
             break;
         case NORMAL_TEMP:
+            if (carWash->getState() != SystemState::WASHING) {
+                state = OFFLINE;
+            }
+
             if (carWash->getTemperature() >= MAX_TEMPERATURE) {
                 tHighTemp = millis();
                 state = HIGH_TEMP;
             }
             break;
         case HIGH_TEMP:
+            if (carWash->getState() != SystemState::WASHING) {
+                state = OFFLINE;
+            }
+
             if (carWash->getTemperature() < MAX_TEMPERATURE) {
                 state = NORMAL_TEMP;
             }
@@ -30,7 +38,6 @@ void TempCheckTask::tick() {
         case ALERT:
             if (carWash->getState() == SystemState::WASHING) {
                 state = NORMAL_TEMP;
-                carWash->setState(SystemState::WASHING);
             }
             break;
     }

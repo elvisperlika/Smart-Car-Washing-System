@@ -14,6 +14,7 @@ class ServoMImpl : public ServoM {
     public:
         ServoMImpl(unsigned short pin);
         void setPosition(int _angle);
+        int getPosition();
         bool isClose();
         bool isOpen();
         int getDefaultCloseAngle();

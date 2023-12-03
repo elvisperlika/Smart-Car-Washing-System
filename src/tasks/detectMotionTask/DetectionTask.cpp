@@ -9,10 +9,10 @@ void DetectionTask::tick() {
     switch (state)
     {
         case DetectionTaskStates::CAR_NOT_DETECTED:
-            if (carWash->getPresence()) {
-                state = DetectionTaskStates::CAR_DETECTED;
+            if (carWash->getPresence() && carWash->getServoMotor()->isClose()) {
                 carWash->setState(SystemState::WELCOME);
                 tCarDetected = millis();
+                state = DetectionTaskStates::CAR_DETECTED;
             }
 
             if (millis() - tStart >= T0) {

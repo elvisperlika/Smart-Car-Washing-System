@@ -3,22 +3,27 @@
 ServoMImpl::ServoMImpl(unsigned short pin) : ServoM(pin) {
     servo.attach(pin);
     angle = CLOSE_GATE_DEGREE;
-    servo.write(this->angle);
+    setPosition(angle);
 }
 
 void ServoMImpl::setPosition(int _angle) {
-    if (_angle > CLOSE_GATE_DEGREE) {
+    angle = _angle;
+    if (angle > CLOSE_GATE_DEGREE) {
         angle = CLOSE_GATE_DEGREE;
-    } else if (_angle < OPEN_GATE_DEGREE) {
+    } else if (angle < OPEN_GATE_DEGREE) {
         angle = OPEN_GATE_DEGREE;
     }
 
     float coeff = (2400.0 - 544.0) / 180;
-    servo.write(544 + _angle * coeff);
+    servo.write(544 + angle * coeff);
+}
+
+int ServoMImpl::getPosition() {
+    return angle;
 }
 
 bool ServoMImpl::isClose() {
-    return angle == CLOSE_GATE_DEGREE;
+    return angle >= CLOSE_GATE_DEGREE;
 }
 
 bool ServoMImpl::isOpen() {
