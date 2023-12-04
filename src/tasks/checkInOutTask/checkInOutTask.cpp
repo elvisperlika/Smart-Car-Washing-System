@@ -2,9 +2,12 @@
 
 CheckInOutTask::CheckInOutTask(int period, CarWash *carWash) : Task(period, carWash) {
     state = CheckInOutTaskStates::OFFLINE;
+    checkErrorCounter = 0;
 }
 
 void CheckInOutTask::tick() {
+    int currentDistance = carWash->getDistance();
+
     switch (state)
     {
         case CheckInOutTaskStates::OFFLINE:
@@ -13,18 +16,42 @@ void CheckInOutTask::tick() {
             }
             break;
         case CheckInOutTaskStates::CHECK_IN:
-            if (carWash->getDistance() >= MAX_DISTANCE) {
-                state = CheckInOutTaskStates::OFFLINE;
-                carWash->setState(SystemState::DETECTION);
+            if (currentDistance >= MAX_ERROR_DISTANCE) {
+                if (!checkError()) {
+                    break;
+                }
+            } else {
+                checkErrorCounter = 0;
             }
 
-            if (carWash->getDistance() <= MIN_DISTANCE) {
+            if (currentDistance >= MAX_DISTANCE) {
+                state = CheckInOutTaskStates::RESTORING;
+                carWash->setState(SystemState::DETECTION);
+                Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            }
+
+            if (currentDistance <= MIN_DISTANCE) {
                 state = CheckInOutTaskStates::CHECKING_IN;
                 checkInTimer = millis();
             }
             break;
+        
+        case CheckInOutTaskStates::RESTORING:
+            if (carWash->getServoMotor()->isClose()) {
+                state = CheckInOutTaskStates::OFFLINE;
+            }
+            break;
+
         case CheckInOutTaskStates::CHECKING_IN:
-            if (carWash->getDistance() > MIN_DISTANCE) {
+            if (currentDistance >= MAX_ERROR_DISTANCE) {
+                if (!checkError()) {
+                    break;
+                }
+            } else {
+                checkErrorCounter = 0;
+            }
+
+            if (currentDistance > MIN_DISTANCE) {
                 state = CheckInOutTaskStates::CHECK_IN;
             }
 
@@ -46,14 +73,29 @@ void CheckInOutTask::tick() {
             }                
             break;
         case CheckInOutTaskStates::CHECKING_OUT:
-            if (checkOutTimer >= T4) {
+            if (currentDistance >= MAX_ERROR_DISTANCE) {
+                if (!checkError()) {
+                    break;
+                }
+            } else {
+                checkErrorCounter = 0;
+            }
+
+            if (millis() - checkOutTimer >= T4) {
                 carWash->setState(SystemState::DETECTION);
                 state = CheckInOutTaskStates::OFFLINE;
             }
 
-            if (carWash->getDistance() < MAX_DISTANCE) {
+            if (currentDistance < MAX_DISTANCE) {
                 checkOutTimer = millis();
             }            
             break;
     }
+}
+
+bool CheckInOutTask::checkError() {
+    if (checkErrorCounter++ >= 3) {
+        return true;
+    }
+    return false;
 }

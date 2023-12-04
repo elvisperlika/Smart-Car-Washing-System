@@ -8,7 +8,6 @@ class CommunicationTask: public Task {
         Msg* msg;
         char data;
         String dataOut;
-        String state;
         String buffer;
     public:
         CommunicationTask(int period, CarWash *carWash);

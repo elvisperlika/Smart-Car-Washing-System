@@ -13,7 +13,7 @@ class TempCheckTask: public Task {
         ALERT
     };
     TempCheckTaskStates state;
-    uint8_t tHighTemp;
+    unsigned long tHighTemp;
     bool alert = false;
 
 public:

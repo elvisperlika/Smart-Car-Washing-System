@@ -9,6 +9,7 @@ class CheckInOutTask : public Task {
         enum CheckInOutTaskStates {
             OFFLINE,
             CHECK_IN,
+            RESTORING,
             CHECKING_IN,
             GATE_CLOSING,
             IN_WASH_WAITING,
@@ -17,6 +18,8 @@ class CheckInOutTask : public Task {
         CheckInOutTaskStates state;
         unsigned long checkInTimer;
         unsigned long checkOutTimer;
+        bool checkError();
+        unsigned short checkErrorCounter;
     public:
         CheckInOutTask(int period, CarWash *carWash);
         void tick();

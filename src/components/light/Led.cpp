@@ -15,7 +15,6 @@ void Led::fading() {
         fadeState = !fadeState;
     }
     currentLight += fadeState ? FADE_STEP : -FADE_STEP;
-    Serial.println(currentLight);
     analogWrite(this->pins[0].getPinNumber(), currentLight);
 }
 
