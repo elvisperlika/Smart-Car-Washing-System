@@ -11,14 +11,11 @@ void CommunicationTask::tick() {
             carWash->errorTempratureFixed();
         }
         delete msg;
-    } else {
-        state = carWash->enumToString(carWash->getState());
     }
 
     buffer = String(carWash->getTemperature(), 2);
 
     char dataOut[100];
-    sprintf(dataOut, "{\"temperature\": \"%s\", \"state\": \"%s\"}", buffer.begin(), this->state.c_str());
-    
-    MsgService.sendMsg(dataOut);
+    sprintf(dataOut, "{\"temperature\": \"%s\", \"state\": \"%s\"}", buffer.begin(), carWash->isSuspended() ? "SLEEP" : carWash->enumToString(carWash->getState()));
+    Serial.println(dataOut);
 }

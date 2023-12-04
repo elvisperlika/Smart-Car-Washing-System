@@ -18,7 +18,7 @@ void WashTask::tick() {
         case WashTaskStates::WASHING:
             carWash->setGlobalWashingTime(round(millis() - washingTime + totalSuspendedTime));
             
-            if (millis() - washingTime + totalSuspendedTime >= T3) {
+            if (millis() - washingTime - totalSuspendedTime >= T3) {
                 carWash->setState(SystemState::CHECK_OUT);
                 state = WashTaskStates::CAR_EXIT;
                 break;

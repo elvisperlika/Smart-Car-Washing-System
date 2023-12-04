@@ -27,6 +27,7 @@ void CheckInOutTask::tick() {
             if (currentDistance >= MAX_DISTANCE) {
                 state = CheckInOutTaskStates::RESTORING;
                 carWash->setState(SystemState::DETECTION);
+                Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             }
 
             if (currentDistance <= MIN_DISTANCE) {

@@ -9,13 +9,14 @@
 #include "tasks/tempCheckTask/TempCheckTask.h"
 #include "tasks/communicationTask/CommunicationTask.h"
 #include "tasks/userInterfaceTask/UserInterfaceTask.h"
-#include <EnableInterrupt.h>
+
 
 Scheduler sched;
 CarWash *carWash;
 
 void unsleep() {
     carWash->setSuspended(false);
+    Serial.println("Unsleep");
 }
 
 void setup()
@@ -30,7 +31,7 @@ void setup()
     detectTask->setName("DetectionTask");
     Task *accessTask = new AccessTask(100, carWash);
     accessTask->setName("AccessTask");
-    Task *sleepTask = new SleepModeTask(100, carWash);
+    Task *sleepTask = new SleepModeTask(500, carWash);
     sleepTask->setName("SleepModeTask");
     Task *checkInOutTask = new CheckInOutTask(100, carWash);
     checkInOutTask->setName("CheckInOutTask");
@@ -45,17 +46,18 @@ void setup()
     Task *userInterfaceTask = new UserInterfaceTask(100, carWash);
     userInterfaceTask->setName("UserInterfaceTask");
     
+    sched.addTask(userInterfaceTask);
+    sched.addTask(communicationTask);
     sched.addTask(detectTask);
     sched.addTask(accessTask);
-    sched.addTask(sleepTask);
     sched.addTask(checkInOutTask);
     sched.addTask(buttonTask);
     sched.addTask(washTask);
     sched.addTask(tempCheckTask);
-    //sched.addTask(communicationTask);
-    sched.addTask(userInterfaceTask);
+    sched.addTask(sleepTask);
 
-    enableInterrupt(MOTION_SENSOR_PIN, unsleep, RISING);
+    /* enableInterrupt(MOTION_SENSOR_PIN, unsleep, CHANGE); */
+    attachInterrupt(digitalPinToInterrupt(MOTION_SENSOR_PIN), unsleep, RISING);
 }
 
 void loop()
@@ -64,16 +66,16 @@ void loop()
     Serial.println(carWash->getState());*/
     delay(200);
     sched.schedule();
-    Serial.print("Distance: ");
+    /* Serial.print("Distance: ");
     Serial.println(carWash->getDistance());
     Serial.print("Presence: ");
     Serial.println(carWash->getPresence());
     Serial.print("Button: ");
     Serial.println(carWash->isButtonPressed());
     Serial.print("Gate: ");
-    Serial.println(carWash->getServoMotor()->isClose() ? "CLOSE" : "OPEN");
-    Serial.print("State: ");
-    Serial.println(carWash->enumToString(carWash->getState()));
+    Serial.println(carWash->getServoMotor()->isClose() ? "CLOSE" : "OPEN"); */
+    /* Serial.print("State: ");
+    Serial.println(carWash->enumToString(carWash->getState())); */
     /*Serial.println("POSTSTATE:");
     Serial.println(carWash->getState());*/
 }

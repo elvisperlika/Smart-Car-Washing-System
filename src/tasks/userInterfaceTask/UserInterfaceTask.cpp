@@ -5,8 +5,11 @@ UserInterfaceTask::UserInterfaceTask(int period, CarWash *carWash): Task(period,
 }
 
 void UserInterfaceTask::tick() {
+
+
     switch (state) {
         case UserInterfaceTaskStates::DETECTION_:
+            carWash->getLcd()->clearScreen();
             carWash->getLed1()->switchLight(false);
             carWash->getLed2()->switchLight(false);
             carWash->getLed3()->switchLight(false);
@@ -32,7 +35,7 @@ void UserInterfaceTask::tick() {
 
         case UserInterfaceTaskStates::CHECK_IN_:
             carWash->getLed2()->blink(100l);
-            if (carWash->getState() == SystemState::VEICHLE_WAITING)
+            if (carWash->getState() == SystemState::READY_TO_BE_WASHED)
             {
                 carWash->getLcd()->clearScreen();
                 carWash->getLcd()->displayText("Ready to Wash!");

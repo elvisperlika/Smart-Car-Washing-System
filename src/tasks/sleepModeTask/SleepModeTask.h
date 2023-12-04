@@ -8,5 +8,6 @@ class SleepModeTask: public Task {
     public:
         SleepModeTask(int period, CarWash *carWash);
         void tick();
+        void unsleep1();
 };
 #endif
