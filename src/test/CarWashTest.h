@@ -10,15 +10,15 @@ class CarWashTest {
 
     public:
         CarWashTest(CarWash* carWash);
-        void testLedsOn();
-        void testLedsOff();
+        void testLedsOnOff();
         void testLedsBlink();
         void testPresentiometer();
         void testButton();
         void testLcdWrite();
         void testLcdClear();
-
-
+        void testServoMotor();
+        void testTemperatureSensor();
+        void testDistanceSensor();
 };
 
 #endif
