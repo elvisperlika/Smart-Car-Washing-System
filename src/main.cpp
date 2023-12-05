@@ -13,7 +13,6 @@
 
 Scheduler sched;
 CarWash *carWash;
-CarWashTest *carWashTest;
 
 void unsleep() {
     carWash->setSuspended(false);
@@ -59,7 +58,6 @@ void setup()
 
     /* enableInterrupt(MOTION_SENSOR_PIN, unsleep, CHANGE); */
     attachInterrupt(digitalPinToInterrupt(MOTION_SENSOR_PIN), unsleep, RISING);
-   
 }
 
 void loop()
