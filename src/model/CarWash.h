@@ -49,6 +49,7 @@ class CarWash {
             "WASHING_ERROR",
             "CHECK_OUT"
         };
+        int carWashed;
         
 
     public:
@@ -70,6 +71,8 @@ class CarWash {
         void errorTempratureFixed();
         unsigned long getGlobalWashingTime();
         void setGlobalWashingTime(unsigned long newTime);
+        void incCarWashed();
+        int getCarWashed();
 };
 
 #endif

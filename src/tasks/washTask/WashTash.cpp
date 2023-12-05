@@ -38,6 +38,7 @@ void WashTask::tick() {
             break;
         
         case WashTaskStates::CAR_EXIT:
+            carWash->incCarWashed();
             if (carWash->getState() == SystemState::DETECTION) {
                 state = WashTaskStates::OFFLINE;
                 carWash->setGlobalWashingTime(0);

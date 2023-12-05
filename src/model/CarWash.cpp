@@ -86,3 +86,11 @@ unsigned long CarWash::getGlobalWashingTime() {
 void CarWash::setGlobalWashingTime(unsigned long newTime) {
     globalWashingTime = newTime;
 }
+
+void CarWash::incCarWashed() {
+    carWashed++;
+}
+
+int CarWash::getCarWashed() {
+    return carWashed;
+}
