@@ -25,7 +25,12 @@ void AccessTask::tick() {
             }            
             break;
         case AccessTaskStates::CLOSING:
+<<<<<<< HEAD
             carWash->getServoMotor()->setPosition(carWash->getServoMotor()->getPosition() + SERVO_DEGREE_CHANGE);
+=======
+            angle += SERVO_DEGREE_CHANGE;
+            carWash->getServoMotor()->setPosition(angle);
+>>>>>>> 60a6591a444ea8a73b354d2874f654f6b507e831
             if (carWash->getServoMotor()->isClose())
             {
                 gateState = AccessTaskStates::CLOSE;
@@ -33,4 +38,8 @@ void AccessTask::tick() {
             break;      
     }
 
+}
+
+int AccessTask::getState() {
+    return gateState;
 }

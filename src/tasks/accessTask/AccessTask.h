@@ -15,6 +15,7 @@ class AccessTask: public Task {
     public:
         AccessTask(int period, CarWash *carWash);
         void tick();
+        int getState();
 };
 
 #endif

@@ -12,6 +12,7 @@ class CommunicationTask: public Task {
     public:
         CommunicationTask(int period, CarWash *carWash);
         void tick();
+        int getState();
 };
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef __CARWASH__
-#define __CARWASH__
+#ifndef __CAR_WASH_H__
+#define __CAR_WASH_H__
 
 #include "Config.h"
 #include "components/button/Button.h"

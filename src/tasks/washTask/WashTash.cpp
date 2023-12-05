@@ -45,3 +45,7 @@ void WashTask::tick() {
             break;
     }
 }
+
+int WashTask::getState() {
+    return state;
+}

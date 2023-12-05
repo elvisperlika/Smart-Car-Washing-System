@@ -24,3 +24,11 @@ void SleepModeTask::tick()
 
     }
 }
+<<<<<<< HEAD
+=======
+
+int SleepModeTask::getState()
+{
+    return 0;
+}
+>>>>>>> 60a6591a444ea8a73b354d2874f654f6b507e831

@@ -93,9 +93,14 @@ void CheckInOutTask::tick() {
     }
 }
 
+<<<<<<< HEAD
 bool CheckInOutTask::checkError() {
     if (checkErrorCounter++ >= 3) {
         return true;
     }
     return false;
+=======
+int CheckInOutTask::getState() {
+    return state;
+>>>>>>> 60a6591a444ea8a73b354d2874f654f6b507e831
 }

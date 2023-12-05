@@ -59,3 +59,7 @@ void DetectionTask::tick() {
             break;
     }
 }
+
+int DetectionTask::getState() {
+    return state;
+}

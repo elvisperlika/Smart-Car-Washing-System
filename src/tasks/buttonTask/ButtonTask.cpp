@@ -20,3 +20,7 @@ void ButtonTask::tick() {
             break;
     }
 }
+
+int ButtonTask::getState() {
+    return state;
+}
