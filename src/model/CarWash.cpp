@@ -14,6 +14,7 @@ CarWash::CarWash() {
     systemState = SystemState::DETECTION;
     suspended = false;
     globalWashingTime = 0;
+    carWashed = 0;
 }
 
 Led *CarWash::getLed1() {
@@ -85,4 +86,12 @@ unsigned long CarWash::getGlobalWashingTime() {
 
 void CarWash::setGlobalWashingTime(unsigned long newTime) {
     globalWashingTime = newTime;
+}
+
+void CarWash::incCarWashed() {
+    carWashed++;
+}
+
+int CarWash::getCarWashed() {
+    return carWashed;
 }

@@ -16,6 +16,7 @@ void CommunicationTask::tick() {
     buffer = String(carWash->getTemperature(), 2);
 
     char dataOut[100];
-    sprintf(dataOut, "{\"temperature\": \"%s\", \"state\": \"%s\"}", buffer.begin(), carWash->isSuspended() ? "SLEEP" : carWash->enumToString(carWash->getState()));
+    sprintf(dataOut, "{\"temperature\": \"%s\", \"state\": \"%s\", \"washingNumber\": \"%d\"}", 
+        buffer.begin(), carWash->isSuspended() ? "SLEEP" : carWash->enumToString(carWash->getState()), carWash->getCarWashed());
     Serial.println(dataOut);
 }
