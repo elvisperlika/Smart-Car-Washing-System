@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnOpen = new System.Windows.Forms.Button();
             this.lblConnStatus = new System.Windows.Forms.Label();
@@ -47,12 +48,15 @@
             this.lblTemp = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblWashes = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.grpAdmin.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnUpdate);
             this.groupBox1.Controls.Add(this.btnClose);
             this.groupBox1.Controls.Add(this.btnOpen);
             this.groupBox1.Controls.Add(this.lblConnStatus);
@@ -68,6 +72,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Settings";
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(9, 115);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(188, 46);
+            this.btnUpdate.TabIndex = 10;
+            this.btnUpdate.Text = "Update Ports";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnClose
             // 
@@ -151,6 +165,8 @@
             // 
             // grpAdmin
             // 
+            this.grpAdmin.Controls.Add(this.lblWashes);
+            this.grpAdmin.Controls.Add(this.label6);
             this.grpAdmin.Controls.Add(this.btnAlert);
             this.grpAdmin.Controls.Add(this.lblStatus);
             this.grpAdmin.Controls.Add(this.label5);
@@ -211,6 +227,23 @@
             // 
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 73);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Washes: ";
+            // 
+            // lblWashes
+            // 
+            this.lblWashes.AutoSize = true;
+            this.lblWashes.Location = new System.Drawing.Point(64, 73);
+            this.lblWashes.Name = "lblWashes";
+            this.lblWashes.Size = new System.Drawing.Size(0, 9);
+            this.lblWashes.TabIndex = 6;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,6 +286,9 @@
         private System.Windows.Forms.Button btnAlert;
         private System.Windows.Forms.Label lblStatus;
         private System.IO.Ports.SerialPort serialPort1;
+        private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.Label lblWashes;
+        private System.Windows.Forms.Label label6;
     }
 }
 
