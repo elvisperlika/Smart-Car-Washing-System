@@ -27,23 +27,23 @@ void setup()
 
     sched.init(100);
 
-    Task *detectTask = new DetectionTask(100, carWash);
+    Task *detectTask = new DetectionTask(300, carWash);
     detectTask->setName("DetectionTask");
     Task *accessTask = new AccessTask(100, carWash);
     accessTask->setName("AccessTask");
-    Task *sleepTask = new SleepModeTask(500, carWash);
+    Task *sleepTask = new SleepModeTask(1000, carWash);
     sleepTask->setName("SleepModeTask");
-    Task *checkInOutTask = new CheckInOutTask(100, carWash);
+    Task *checkInOutTask = new CheckInOutTask(300, carWash);
     checkInOutTask->setName("CheckInOutTask");
     Task *buttonTask = new ButtonTask(100, carWash);
     buttonTask->setName("ButtonTask");
-    Task *washTask = new WashTask(100, carWash);
+    Task *washTask = new WashTask(500, carWash);
     washTask->setName("WashTask");
     Task *tempCheckTask = new TempCheckTask(100, carWash);
     tempCheckTask->setName("TempCheckTask");
-    Task *communicationTask = new CommunicationTask(100, carWash);
+    Task *communicationTask = new CommunicationTask(200, carWash);
     communicationTask->setName("CommunicationTask");
-    Task *userInterfaceTask = new UserInterfaceTask(100, carWash);
+    Task *userInterfaceTask = new UserInterfaceTask(200, carWash);
     userInterfaceTask->setName("UserInterfaceTask");
     
     sched.addTask(userInterfaceTask);
