@@ -1,0 +1,13 @@
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\bin\Debug\CarWashingAdminPanelWinForm.exe.config
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\bin\Debug\CarWashingAdminPanelWinForm.exe
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\bin\Debug\CarWashingAdminPanelWinForm.pdb
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\obj\Debug\CarWashingAdminPanelWinForm.csproj.AssemblyReference.cache
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\obj\Debug\CarWashingAdminPanelWinForm.Form1.resources
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\obj\Debug\CarWashingAdminPanelWinForm.Properties.Resources.resources
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\obj\Debug\CarWashingAdminPanelWinForm.csproj.GenerateResource.cache
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\obj\Debug\CarWashingAdminPanelWinForm.csproj.CoreCompileInputs.cache
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\obj\Debug\CarWashingAdminPanelWinForm.exe
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\obj\Debug\CarWashingAdminPanelWinForm.pdb
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Enea\source\repos\CarWashingAdminPanel\CarWashingAdminPanelWinForm\obj\Debug\CarWashingAdminPanelWinForm.csproj.CopyComplete
