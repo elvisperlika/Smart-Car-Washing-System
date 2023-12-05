@@ -12,7 +12,6 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using static System.Net.Mime.MediaTypeNames;
 using System.Threading;
-using System.Reflection.Emit;
 
 namespace CarWashingAdminPanelWinForm
 {
@@ -20,7 +19,7 @@ namespace CarWashingAdminPanelWinForm
     {
 
         string serialDataIn;
-       bool recived = false;    
+
 
         public Form1()
         {
@@ -56,67 +55,6 @@ namespace CarWashingAdminPanelWinForm
                 lblConnStatus.Text = "CONNECTED";
                 lblConnStatus.ForeColor = Color.Green;
 
-                new Thread(() =>
-                {
-                    Thread.CurrentThread.IsBackground = true;
-                    Thread.Sleep(3000);
-                    if (!recived)
-                    {
-                        serialPort1.Close();
-                        if (btnOpen.InvokeRequired)
-                        {
-                            btnOpen.Invoke(new Action(() => btnOpen.Enabled = true));
-                        }
-                        else
-                        {
-                            btnOpen.Enabled = true;
-                        } 
-
-                        if (btnClose.InvokeRequired)
-                        {
-                            btnClose.Invoke(new Action(() => btnClose.Enabled = false));
-                        }
-                        else
-                        {
-                            btnOpen.Enabled = false;
-                        }
-
-                        if (grpAdmin.InvokeRequired)
-                        {
-                            grpAdmin.Invoke(new Action(() => grpAdmin.Enabled = false));
-                        }
-                        else
-                        {
-                            grpAdmin.Enabled = false;
-                        }
-                        
-                        if (prgStatus.InvokeRequired)
-                        {
-                            prgStatus.Invoke(new Action(() => prgStatus.Value = 0));
-                        }
-                        else
-                        {
-                            prgStatus.Value = 0;
-                        }
-                        
-                        if (lblConnStatus.InvokeRequired)
-                        {
-                            lblConnStatus.Invoke(new Action(() => lblConnStatus.Text = "DISCONNECTED"));
-                            lblConnStatus.Invoke(new Action(() => lblConnStatus.ForeColor = Color.Red));
-                        }
-                        else
-                        {
-
-                            lblConnStatus.Text = "DISCONNECTED";
-                            lblConnStatus.ForeColor = Color.Red;
-                        }
-                        
-                       
-                        
-                        MessageBox.Show("Connection Timeout");
-                    }
-                    
-                }).Start();
             }
             catch (Exception ex)
             {
@@ -192,7 +130,6 @@ namespace CarWashingAdminPanelWinForm
 
                 if (lastIndexOpenBrace >= 0 && lastIndexCloseBrace >= 0 && lastIndexOpenBrace < lastIndexCloseBrace)
                 {
-                    recived = true;
                     string extractedJson = buffer.ToString().Substring(lastIndexOpenBrace, lastIndexCloseBrace - lastIndexOpenBrace + 1);
 
                     // Replace escaped double quotes with regular double quotes
@@ -234,7 +171,7 @@ namespace CarWashingAdminPanelWinForm
             UpdateLabelValue(lblStatus, "state", values);
         }
 
-        private void UpdateLabelValue(System.Windows.Forms.Label label, string key, Dictionary<string, string> values)
+        private void UpdateLabelValue(Label label, string key, Dictionary<string, string> values)
         {
             if (values.TryGetValue(key, out string value))
             {
@@ -253,13 +190,6 @@ namespace CarWashingAdminPanelWinForm
         private void lblConnStatus_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnUpdate_Click(object sender, EventArgs e)
-        {
-            string[] portList = SerialPort.GetPortNames();
-            cmbComPort.Items.Clear();
-            cmbComPort.Items.AddRange(portList);
         }
     }
 }
